@@ -1,0 +1,66 @@
+{
+  "name": "@finografic/dprint-config",
+  "version": "0.1.0",
+  "description": "Opinionated dprint configuration for the finografic ecosystem",
+  "license": "MIT",
+  "homepage": "https://github.com/finografic/dprint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finografic/dprint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/finografic/dprint-config/issues"
+  },
+  "keywords": [
+    "dprint",
+    "dprint-config",
+    "formatter",
+    "finografic"
+  ],
+  "files": [
+    "dprint.jsonc",
+    "README.md"
+  ],
+  "scripts": {
+    "========== LINTING": "===================================================",
+    "lint": "eslint .",
+    "lint.fix": "eslint . --fix",
+    "·········· FORMATTING": "············································",
+    "format": "dprint fmt",
+    "format.check": "dprint fmt --check",
+    "·········· PUBLISH.GITHUB": "············································",
+    "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
+    "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",
+    "release.github.major": "pnpm run release.check && pnpm version major && git push --follow-tags",
+    "release.check": "pnpm lint.fix",
+    "·········· REGISTRIES": "··············································",
+    "view.registry.github": "pnpm view @finografic/dprint-config --registry=https://npm.pkg.github.com",
+    "·········· PACKAGES": "··················································",
+    "upgrade.deps.all": "pnpm update --latest",
+    "·········· HOOKS": "·····················································",
+    "prepare": "simple-git-hooks"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,mjs}": [
+      "eslint --fix"
+    ],
+    "*.md": [
+      "eslint --fix"
+    ]
+  },
+  "peerDependencies": {
+    "dprint": "^0.47.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "dprint": "^0.51.1",
+    "eslint": "^9.39.2",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
+    "simple-git-hooks": "^2.13.1",
+    "typescript-eslint": "^8.52.0"
+  }
+}

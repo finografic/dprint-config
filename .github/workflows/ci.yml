@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # dprint is NOT a Node tool — install it directly
+      - name: Install dprint
+        run: |
+          curl -fsSL https://dprint.dev/install.sh | sh
+          echo "$HOME/.dprint/bin" >> $GITHUB_PATH
+
+      - name: Run dprint check
+        run: dprint check --config dprint.jsonc
+
+      # ESLint (Node-based)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: ESLint
+        run: pnpm eslint .

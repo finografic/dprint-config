@@ -19,6 +19,8 @@
   ],
   "files": [
     "dprint.jsonc",
+    "dprint-typescript.jsonc",
+    "dprint-json.jsonc",
     "README.md"
   ],
   "scripts": {
@@ -26,8 +28,8 @@
     "lint": "eslint .",
     "lint.fix": "eslint . --fix",
     "·········· FORMATTING": "············································",
-    "format": "dprint fmt",
-    "format.check": "dprint fmt --check",
+    "format": "dprint check",
+    "format.write": "dprint fmt",
     "·········· PUBLISH.GITHUB": "············································",
     "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
     "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",
@@ -49,14 +51,13 @@
     ]
   },
   "peerDependencies": {
-    "dprint": "^0.47.0"
+    "dprint": "^0.51.1"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "dprint": "^0.51.1",
     "eslint": "^9.39.2",
     "jiti": "^2.6.1",
     "lint-staged": "^16.2.7",

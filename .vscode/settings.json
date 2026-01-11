@@ -24,7 +24,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
-  // Enable experimental LSP mode for better performance (requires dprint 0.45+)
   "dprint.experimentalLsp": true,
   "dprint.verbose": true,
 }

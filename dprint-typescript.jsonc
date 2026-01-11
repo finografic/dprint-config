@@ -4,6 +4,6 @@
     "lineWidth": 100,
   },
   "plugins": [
-    "https://plugins.dprint.dev/typescript-0.80.wasm",
+    "https://plugins.dprint.dev/typescript-0.69.0.wasm",
   ]
 }

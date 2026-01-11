@@ -1,4 +1,4 @@
-# @finografic/dprint-config
+# 🦋 @finografic/dprint-config
 
 Opinionated, minimal **dprint configuration** for the finografic ecosystem.
 

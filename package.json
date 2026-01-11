@@ -19,13 +19,13 @@
   ],
   "files": [
     "dprint.jsonc",
-    "dprint-typescript.jsonc",
-    "dprint-json.jsonc",
-    "dprint-markdown.jsonc",
-    "dprint-toml.jsonc",
-    "dprint-yaml.jsonc",
-    "dprint-malva.jsonc",
-    "dprint-markup.jsonc",
+    "configs/dprint-typescript.jsonc",
+    "configs/dprint-json.jsonc",
+    "configs/dprint-markdown.jsonc",
+    "configs/dprint-toml.jsonc",
+    "configs/dprint-yaml.jsonc",
+    "configs/dprint-malva.jsonc",
+    "configs/dprint-markup.jsonc",
     "README.md"
   ],
   "scripts": {

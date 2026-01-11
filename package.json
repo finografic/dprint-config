@@ -34,7 +34,7 @@
     "lint.fix": "eslint . --fix",
     "·········· FORMATTING": "················································",
     "format": "dprint fmt --diff",
-    "format.check": "dprint check --diff",
+    "format.check": "dprint check",
     "·········· DPRINT COMMANDS": "···········································",
     "dprint.plugins.update": "node ./scripts/update-plugins.mjs",
     "·········· PUBLISH.GITHUB": "············································",

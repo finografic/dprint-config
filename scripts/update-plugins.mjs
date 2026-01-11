@@ -2,6 +2,7 @@
 
 import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 /**
  * List of dprint config files that own plugin definitions.
@@ -26,13 +27,14 @@ function run(cmd) {
 }
 
 for (const configFile of DPRINT_CONFIG_FILES) {
-  if (!existsSync(configFile)) {
+  const fullPath = join(globalThis.process.cwd(), 'configs', configFile);
+  if (!existsSync(fullPath)) {
     globalThis.console.warn(`⚠️  Skipping missing config: ${configFile}`);
     continue;
   }
 
   globalThis.console.log(`\n🔄 Updating plugins in ${configFile}`);
-  run(`dprint config update -c ${configFile}`);
+  run(`dprint config update -c ${fullPath}`);
 }
 
 globalThis.console.log('\n✅ dprint plugin update complete');

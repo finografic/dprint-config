@@ -8,9 +8,8 @@ Before releasing, ensure:
 
 - ✅ All changes committed and pushed
 - ✅ On `master` branch
-- ✅ Tests passing (`pnpm test.run`)
 - ✅ Linting passing (`pnpm lint`)
-- ✅ Type-checking passing (`pnpm typecheck`)
+- ✅ Formatting correct (`pnpm format.check`)
 
 ## Quick Release Commands
 
@@ -43,9 +42,7 @@ pnpm release.github.major
 When you run a release command:
 
 1. **Local checks run** (`release.check`)
-   - Linting
-   - Type checking
-   - Tests
+   - Linting (auto-fixes issues)
 
 2. **Version bump** in `package.json`
    - Creates a commit
@@ -57,8 +54,7 @@ When you run a release command:
 4. **GitHub Actions workflow triggers**
    - Workflow detects the tag push
    - Installs dependencies
-   - Builds the package
-   - Publishes to GitHub Packages
+   - Publishes to GitHub Packages (no build needed - config-only package)
    - Creates GitHub Release with auto-generated notes
 
 5. **GitHub Release appears**
@@ -79,11 +75,7 @@ After releasing, verify:
 
 ## Manual Steps
 
-If the automated release fails, you can manually publish:
-
-```bash
-pnpm release.publish
-```
+If the automated release fails, check the error output and fix any issues before retrying the release command.
 
 ## Troubleshooting
 
@@ -105,9 +97,8 @@ pnpm release.github.patch
 Run the checks manually to see what failed:
 
 ```bash
-pnpm lint.fix
-pnpm typecheck
-pnpm test.run
+pnpm lint.fix      # Fix lint issues
+pnpm format.check  # Check formatting
 ```
 
 ### Workflow fails

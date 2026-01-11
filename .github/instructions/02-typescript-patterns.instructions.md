@@ -10,7 +10,7 @@
 interface CreateUserParams {
   name: string;
   email: string;
-  role: "admin" | "user";
+  role: 'admin' | 'user';
   isActive?: boolean;
 }
 const createUser = ({ name, email, role, isActive = true }: CreateUserParams) => {};

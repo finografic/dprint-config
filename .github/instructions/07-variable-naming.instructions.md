@@ -38,7 +38,7 @@ Short single-letter variables are acceptable **only** in iterator callbacks wher
 
 ```typescript
 // ✅ GOOD: Clear in iterator context
-const keywords = keywordRaw.filter((k) => typeof k === "string");
+const keywords = keywordRaw.filter((k) => typeof k === 'string');
 const items = array.map((item) => item.value);
 ```
 
@@ -112,11 +112,11 @@ const packageNameKeywordResult = ensureKeyword(updated, packageNameWithoutScope)
 
 ```typescript
 // ✅ GOOD: Consistent naming
-import * as clack from "@clack/prompts";
+import * as clack from '@clack/prompts';
 
 // ❌ BAD: Inconsistent aliases
-import * as p from "@clack/prompts";
-import * as prompts from "@clack/prompts";
+import * as p from '@clack/prompts';
+import * as prompts from '@clack/prompts';
 ```
 
 ## Summary

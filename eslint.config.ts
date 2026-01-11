@@ -1,49 +1,49 @@
-import js from "@eslint/js";
-import type { Linter } from "eslint";
-import tseslint from "typescript-eslint";
+import js from '@eslint/js';
+import type { Linter } from 'eslint';
+import tseslint from 'typescript-eslint';
 
 const config: Linter.Config[] = [
   js.configs.recommended,
 
   {
     ignores: [
-      "dist/**",
-      "node_modules/**",
-      ".github/**",
+      'dist/**',
+      'node_modules/**',
+      '.github/**',
     ],
   },
 
   {
-    files: ["**/*.ts", "**/*.tsx", "*.mjs"],
+    files: ['**/*.ts', '**/*.tsx', '*.mjs'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
     },
     plugins: {
-      "@typescript-eslint": tseslint.plugin,
+      '@typescript-eslint': tseslint.plugin,
     },
     rules: {
       // Let TS handle these
-      "no-unused-vars": "off",
-      "no-redeclare": "off",
+      'no-unused-vars': 'off',
+      'no-redeclare': 'off',
 
       // Minimal TS correctness
-      "@typescript-eslint/no-unused-vars": [
-        "error",
+      '@typescript-eslint/no-unused-vars': [
+        'error',
         {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
         },
       ],
 
-      "@typescript-eslint/no-redeclare": "error",
+      '@typescript-eslint/no-redeclare': 'error',
 
       // This is a config package — logs are fine
-      "no-console": "off",
+      'no-console': 'off',
     },
   },
 ];

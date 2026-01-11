@@ -1,123 +1,106 @@
 # @finografic/dprint-config
 
-> Opinionated dprint configuration for the **@finografic** ecosystem.
+Opinionated, minimal **dprint configuration** for the finografic ecosystem.
 
-This package provides a shared dprint configuration that pairs with `@finografic/eslint-config` to replace Prettier with a faster, more deterministic formatter.
+This package provides a **single, versioned source of truth for formatting**, designed to be used alongside (but fully independent from) `@finografic/eslint-config`.
 
-## ✨ Features
+## Maintaining plugin versions (maintainers)
 
-- 📦 **Config-only package** - Just the configuration, no plugin dependencies
-- 🎨 **Multi-language support** - TypeScript/JavaScript, JSON, Markdown, TOML, YAML, and CSS/SCSS/Sass
-- 🔧 **Editor IntelliSense** - Uses dprint's official JSON Schema for autocomplete and validation
-- 🎯 **Aligned with ESLint** - Config matches `@finografic/eslint-config` stylistic rules
-- 🚫 **No runtime complexity** - Static config only, no execution or magic
+This package relies on **pinned dprint plugin versions** (WASM plugin URLs).
 
-## 📦 Installation
+To update all configured plugins to their latest compatible versions, run:
 
 ```bash
-pnpm add -D @finografic/dprint-config dprint dprint-plugin-typescript dprint-plugin-json dprint-plugin-markdown dprint-plugin-toml dprint-plugin-yaml dprint-plugin-malva
+dprint config update
 ```
 
-This installs:
+Tip: if you ever end up with multiple config entrypoints in different directories, use `dprint config update --recursive`.
 
-- The config package (just the configuration file)
-- The `dprint` CLI (as a dev dependency)
-- The dprint plugins (install only the ones you need)
+## Why this exists
 
-## 🚀 Usage
+- Replace **Prettier** with **dprint**
+- Keep formatting **out of ESLint**
+- Provide a **stable, explicit formatting policy**
+- Work cleanly in TypeScript-first, pnpm-based monorepos
 
-### Copy-Based (Recommended)
+## Installation
 
-Copy `dprint.jsonc` from this package into your project root:
+Install the config package:
 
 ```bash
-# After installing
-cp node_modules/@finografic/dprint-config/dprint.jsonc ./dprint.jsonc
+pnpm add -D @finografic/dprint-config
 ```
 
-Or manually copy the file from `node_modules/@finografic/dprint-config/dprint.jsonc`.
+Install `dprint` (the CLI) however you prefer:
 
-**Note:** We use `.jsonc` (JSON with Comments) to allow inline documentation of configuration choices.
+- `pnpm add -D dprint` (Node projects)
+- Or follow the official install docs: [dprint install](https://dprint.dev/install/)
 
-### Extend-Based (Advanced)
+## Usage (recommended)
 
-If you need to override specific settings, you can extend the config:
+Create a `dprint.jsonc` in your repo root:
 
 ```jsonc
 {
   "$schema": "https://dprint.dev/schemas/v0.json",
-  "extends": "node_modules/@finografic/dprint-config/dprint.jsonc",
-  "lineWidth": 120,
+  "extends": "node_modules/@finografic/dprint-config/dprint.jsonc"
+
+  // Optional local overrides below
 }
 ```
 
-**Note:** Copy-based is the recommended default for predictability and debuggability.
+## Alternative: copy-based ownership
 
-## 📋 Supported Plugins
-
-This package's configuration supports the following plugins (you need to install them separately):
-
-- **TypeScript/JavaScript** (`dprint-plugin-typescript`) - Handles `.ts`, `.tsx`, `.js`, `.jsx`, `.mjs`, `.cjs`
-- **JSON** (`dprint-plugin-json`) - Formats `.json` files
-- **Markdown** (`dprint-plugin-markdown`) - Formats `.md` files
-- **TOML** (`dprint-plugin-toml`) - Formats `.toml` files
-- **YAML** (`dprint-plugin-yaml`) - Formats `.yaml`, `.yml` files
-- **Malva** (`dprint-plugin-malva`) - Formats `.css`, `.scss`, `.sass` files
-
-## 🎨 Configuration Highlights
-
-The config is aligned with `@finografic/eslint-config` stylistic rules:
-
-- **Line width:** 100 characters
-- **Indentation:** 2 spaces
-- **Quotes:** Single quotes (preferred), double for JSX
-- **Semicolons:** Always
-- **Trailing commas:** Always (multiline)
-- **Line endings:** LF
-
-See `dprint.jsonc` for the complete configuration.
-
-## 🔗 Pairing with ESLint
-
-This package is designed to work alongside `@finografic/eslint-config`:
-
-- **ESLint** handles semantic correctness and code quality
-- **dprint** handles syntactic layout and formatting
-- No plugin bridge or circular dependencies
-- Each tool can evolve independently
-
-## 🧠 Design Philosophy
-
-This package follows the **explicit, boring, architecture-first** philosophy:
-
-- ✅ **Explicit** - `$schema` is declared, config is visible
-- ✅ **No magic** - No JS execution, static config only
-- ✅ **Clear boundaries** - dprint stays dumb & fast
-- ✅ **Editor-friendly** - IntelliSense via JSON Schema
-- ✅ **Future-proof** - Schema evolves versionedly
-
-This package uses dprint's official JSON Schema to provide editor IntelliSense and validation. Configuration is intentionally static and non-executable.
-
-## 🛠️ Development
+If you want full local ownership (no inheritance), copy the config:
 
 ```bash
-# Install dependencies (automatically sets up git hooks)
-pnpm install
+cp node_modules/@finografic/dprint-config/dprint.jsonc .
+```
 
-# Lint
-pnpm lint
+## What this package provides
 
-# Format (using dprint)
+- A shared `dprint.jsonc` (with `extends` split-outs like `dprint-json.jsonc`, `dprint-typescript.jsonc`, etc.)
+- Pinned formatter plugins via WASM plugin URLs
+- Opinionated but minimal defaults
+
+## Included plugins (pinned via WASM URLs)
+
+Configured today (and easy to expand):
+
+- TypeScript / JavaScript
+- JSON / JSONC
+- Markdown
+- TOML
+- YAML (Pretty YAML)
+- CSS / SCSS / Sass (Malva)
+- Markup (HTML/Vue/Svelte/Astro via `markup_fmt`)
+
+## Running dprint
+
+- **Format (write changes)**:
+
+```bash
 dprint fmt
 ```
 
-**Note:** Git hooks are automatically configured on `pnpm install`. See [docs/DEVELOPER_WORKFLOW.md](./docs/DEVELOPER_WORKFLOW.md) for the complete workflow.
+- **Check only (CI)**:
 
-## 📚 Documentation
+```bash
+dprint check
+```
 
-- [Developer Workflow](./docs/DEVELOPER_WORKFLOW.md) - Daily development workflow
-- [Release Process](./docs/RELEASES.md) - How to cut releases
-- [GitHub Packages Setup](./docs/GITHUB_PACKAGES_SETUP.md) - Publishing and consuming packages
+## Design boundaries
+
+- **Does**: ship formatting policy + pinned plugin URLs
+- **Does not**: install or run dprint for consumers, integrate with ESLint, provide a wrapper/CLI, or aim for Prettier parity
+
+## Versioning & stability
+
+Formatting behavior is treated as API:
+
+- Patch: non-behavioral changes
+- Minor: intentional formatting changes
+- Major: breaking opinion shifts
 
 ## License
 

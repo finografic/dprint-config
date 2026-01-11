@@ -57,6 +57,7 @@ pnpm release.github.patch  # or .minor or .major
 ```
 
 This automatically:
+
 1. Runs `lint.fix` on the entire codebase
 2. Bumps version in `package.json`
 3. Creates a git commit and tag

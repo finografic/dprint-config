@@ -31,6 +31,16 @@ This package pins plugin versions via **WASM plugin URLs**.
 pnpm dprint.plugins.update
 ```
 
+## Maintainers: repo scripts (tsx)
+
+This repo’s maintainer scripts live in `scripts/*.ts` and run via `tsx` (no `.mjs`).
+
+- Generate TypeScript plugin docs + types:
+
+```bash
+pnpm rules.typescript.generate
+```
+
 ## What it formats
 
 - TypeScript / JavaScript

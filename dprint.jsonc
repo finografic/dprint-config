@@ -19,5 +19,9 @@
     "**/node_modules",
     "**/*-lock.json",
     "**/*-lock.yaml",
+    // Generated docs (exclude from formatting)
+    "docs/RULES_*.md",
+    "docs/**/RULES_*.md",
+    "**/docs/RULES_*.md",
   ],
 }

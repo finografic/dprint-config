@@ -75,7 +75,7 @@ function createSchemaHelpers(schema: JsonSchema) {
     let current: unknown = schema;
     for (const part of parts) {
       if (!current || typeof current !== 'object') return null;
-       
+
       current = (current as any)[part];
     }
     return current ?? null;
@@ -196,6 +196,11 @@ function renderMarkdown(schema: JsonSchema): string {
   const { deref, extractAllowed, extractDefault, extractDescription, inferTsType } =
     createSchemaHelpers(schema);
 
+  function renderLiteralForDocs(value: unknown): string {
+    // Match the .d.ts representation: string literals are double-quoted.
+    return typeof value === 'string' ? JSON.stringify(value) : String(value);
+  }
+
   const lines: string[] = [];
   lines.push('# TypeScript Formatter Rules (dprint)');
   lines.push('');
@@ -224,7 +229,7 @@ function renderMarkdown(schema: JsonSchema): string {
       lines.push('- **Allowed values**:');
       for (const { value, description: valueDesc } of allowed) {
         const suffix = valueDesc ? ` — ${valueDesc}` : '';
-        lines.push(`  - \`${String(value)}\`${suffix}`);
+        lines.push(`  - \`${renderLiteralForDocs(value)}\`${suffix}`);
       }
     }
 

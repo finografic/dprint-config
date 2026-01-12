@@ -14,12 +14,18 @@ const config: Linter.Config[] = [
   },
 
   {
-    files: ['**/*.ts', '**/*.tsx', '*.mjs'],
+    files: ['**/*.{ts,tsx,mjs}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+      },
+      globals: {
+        // Node globals (so we don't need `globalThis.console`, etc.)
+        console: 'readonly',
+        process: 'readonly',
+        fetch: 'readonly',
       },
     },
     plugins: {

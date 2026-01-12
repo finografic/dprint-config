@@ -1,6 +1,6 @@
 {
   "name": "@finografic/dprint-config",
-  "version": "0.3.7",
+  "version": "0.3.6",
   "description": "Opinionated dprint configuration for the finografic ecosystem",
   "license": "MIT",
   "homepage": "https://github.com/finografic/dprint-config",
@@ -19,14 +19,10 @@
   ],
   "files": [
     "dprint.jsonc",
-    "configs/dprint-typescript.jsonc",
-    "configs/dprint-json.jsonc",
-    "configs/dprint-markdown.jsonc",
-    "configs/dprint-toml.jsonc",
-    "configs/dprint-yaml.jsonc",
-    "configs/dprint-malva.jsonc",
-    "configs/dprint-markup.jsonc",
-    "README.md"
+    "configs/*.jsonc",
+    "scripts/*.mjs",
+    "README.md",
+    "TODO.md"
   ],
   "scripts": {
     "========== LINTING": "===================================================",

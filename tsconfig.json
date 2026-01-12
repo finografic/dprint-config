@@ -21,7 +21,8 @@
   "include": [
     "eslint.config.ts",
     "*.mjs",
-    "*.ts"
+    "*.ts",
+    "scripts/**/*.mjs"
   ],
   "exclude": [
     "node_modules",

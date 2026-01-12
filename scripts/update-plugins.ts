@@ -1,8 +1,7 @@
-#!/usr/bin/env node
-
 import { execSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 /**
  * List of dprint config files that own plugin definitions.
@@ -20,21 +19,25 @@ const DPRINT_CONFIG_FILES = [
   'dprint-malva.jsonc',
   'dprint-markup.jsonc',
   'dprint-yaml.jsonc',
-];
+] as const;
 
-function run(cmd) {
+// Resolve paths relative to the package root (not the current working directory).
+const PACKAGE_ROOT = join(fileURLToPath(new URL('.', import.meta.url)), '..');
+
+function run(cmd: string) {
   execSync(cmd, { stdio: 'inherit' });
 }
 
 for (const configFile of DPRINT_CONFIG_FILES) {
-  const fullPath = join(globalThis.process.cwd(), 'configs', configFile);
+  const fullPath = join(PACKAGE_ROOT, 'configs', configFile);
   if (!existsSync(fullPath)) {
-    globalThis.console.warn(`⚠️  Skipping missing config: ${configFile}`);
+    console.warn(`⚠️  Skipping missing config: ${configFile}`);
     continue;
   }
 
-  globalThis.console.log(`\n🔄 Updating plugins in ${configFile}`);
+  console.log(`\n🔄 Updating plugins in ${configFile}`);
   run(`dprint config update -c ${fullPath}`);
 }
 
-globalThis.console.log('\n✅ dprint plugin update complete');
+console.log('\n✅ dprint plugin update complete');
+

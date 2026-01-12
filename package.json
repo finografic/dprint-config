@@ -20,7 +20,7 @@
   "files": [
     "dprint.jsonc",
     "configs/*.jsonc",
-    "scripts/*.mjs",
+    "scripts/*.ts",
     "README.md",
     "TODO.md"
   ],
@@ -32,7 +32,8 @@
     "format": "dprint fmt --diff",
     "format.check": "dprint check",
     "·········· DPRINT COMMANDS": "···········································",
-    "dprint.plugins.update": "node ./scripts/update-plugins.mjs",
+    "dprint.plugins.update": "tsx ./scripts/update-plugins.ts",
+    "rules.typescript.generate": "tsx ./scripts/generate-rules-typescript.ts",
     "·········· PUBLISH.GITHUB": "············································",
     "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
     "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",
@@ -61,10 +62,13 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@types/node": "^24.0.0",
     "eslint": "^9.39.2",
     "jiti": "^2.6.1",
     "lint-staged": "^16.2.7",
     "simple-git-hooks": "^2.13.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0"
   }
 }

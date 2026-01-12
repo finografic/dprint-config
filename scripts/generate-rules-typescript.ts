@@ -1,7 +1,7 @@
-#!/usr/bin/env node
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 const SCHEMA_URL =
   'https://raw.githubusercontent.com/dprint/dprint-plugin-typescript/main/deployment/schema.json';
@@ -13,43 +13,75 @@ const LOCAL_SCHEMA_PATH = 'scripts/schema.json';
 const DOCS_OUT = 'docs/RULES_TYPESCRIPT.md';
 const TYPES_OUT = 'types/dprint-typescript-options.d.ts';
 
-async function loadSchema() {
+// Resolve output relative to the package root (not the current working directory).
+const PACKAGE_ROOT = path.resolve(fileURLToPath(new URL('.', import.meta.url)), '..');
+
+type JsonSchemaPrimitiveType =
+  | 'string'
+  | 'number'
+  | 'integer'
+  | 'boolean'
+  | 'null'
+  | 'array'
+  | 'object';
+
+type JsonSchemaType = JsonSchemaPrimitiveType | JsonSchemaPrimitiveType[];
+
+type JsonSchema = {
+  $schema?: string;
+  $id?: string;
+  type?: JsonSchemaType;
+  properties?: Record<string, JsonSchemaProperty>;
+  definitions?: Record<string, JsonSchemaProperty>;
+};
+
+type JsonSchemaProperty = {
+  $ref?: string;
+  type?: JsonSchemaType;
+  description?: string;
+  default?: unknown;
+  enum?: unknown[];
+  oneOf?: Array<{ const?: unknown; description?: string } & Record<string, unknown>>;
+} & Record<string, unknown>;
+
+async function loadSchema(): Promise<JsonSchema> {
   // Prefer remote (keeps docs/types up to date), but fall back to local for offline/dev.
   try {
-    const res = await globalThis.fetch(SCHEMA_URL);
+    const res = await fetch(SCHEMA_URL);
     if (!res.ok) {
       throw new Error(`Failed to fetch schema: ${res.status}`);
     }
-    return await res.json();
+    return (await res.json()) as JsonSchema;
   } catch (err) {
     const local = await fs.readFile(LOCAL_SCHEMA_PATH, 'utf8');
-    const schema = JSON.parse(local);
-    globalThis.console.warn(
+    const schema = JSON.parse(local) as JsonSchema;
+    console.warn(
       `⚠️  Using local schema fallback at ${LOCAL_SCHEMA_PATH} because remote fetch failed.`,
     );
-    globalThis.console.warn(`   Remote: ${SCHEMA_URL}`);
-    globalThis.console.warn(`   Reason: ${err instanceof Error ? err.message : String(err)}`);
+    console.warn(`   Remote: ${SCHEMA_URL}`);
+    console.warn(`   Reason: ${err instanceof Error ? err.message : String(err)}`);
     return schema;
   }
 }
 
-function createSchemaHelpers(schema) {
-  function resolvePointer(pointer) {
-    if (typeof pointer !== 'string' || !pointer.startsWith('#/')) return null;
+function createSchemaHelpers(schema: JsonSchema) {
+  function resolvePointer(pointer: string): unknown {
+    if (!pointer.startsWith('#/')) return null;
     const parts = pointer
       .slice(2)
       .split('/')
       .map((p) => p.replaceAll('~1', '/').replaceAll('~0', '~'));
 
-    let current = schema;
+    let current: unknown = schema;
     for (const part of parts) {
       if (!current || typeof current !== 'object') return null;
-      current = current[part];
+       
+      current = (current as any)[part];
     }
     return current ?? null;
   }
 
-  function deref(node, seen = new Set()) {
+  function deref(node: JsonSchemaProperty, seen = new Set<string>()): JsonSchemaProperty {
     if (!node || typeof node !== 'object') return node;
     if (!node.$ref) return node;
 
@@ -62,14 +94,13 @@ function createSchemaHelpers(schema) {
 
     // Merge: local fields override resolved, but keep $ref out of the final merged node.
     // This allows properties to add local description/default if needed.
-    const rest = { ...node };
+    const rest: JsonSchemaProperty = { ...node };
     delete rest.$ref;
-    return { ...deref(resolved, seen), ...rest };
+    return { ...deref(resolved as JsonSchemaProperty, seen), ...rest };
   }
 
-  function extractAllowed(prop) {
+  function extractAllowed(prop: JsonSchemaProperty): Array<{ value: unknown; description: string }> {
     const p = deref(prop);
-    if (!p || typeof p !== 'object') return [];
 
     // Some schemas use enum, but dprint schemas commonly use oneOf + const.
     if (Array.isArray(p.enum)) {
@@ -77,7 +108,7 @@ function createSchemaHelpers(schema) {
     }
 
     if (Array.isArray(p.oneOf)) {
-      const values = [];
+      const values: Array<{ value: unknown; description: string }> = [];
       for (const option of p.oneOf) {
         if (option && typeof option === 'object' && 'const' in option) {
           values.push({
@@ -92,40 +123,17 @@ function createSchemaHelpers(schema) {
     return [];
   }
 
-  function extractDefault(prop) {
+  function extractDefault(prop: JsonSchemaProperty): unknown {
     const p = deref(prop);
-    if (p && typeof p === 'object' && 'default' in p) return p.default;
-    return undefined;
+    return 'default' in p ? p.default : undefined;
   }
 
-  function extractDescription(prop) {
+  function extractDescription(prop: JsonSchemaProperty): string {
     const p = deref(prop);
-    if (p && typeof p === 'object' && typeof p.description === 'string' && p.description.trim()) {
-      return p.description.trim();
-    }
-    return '';
+    return typeof p.description === 'string' ? p.description.trim() : '';
   }
 
-  function inferTsType(prop) {
-    const p = deref(prop);
-    const allowed = extractAllowed(p);
-
-    if (allowed.length > 0) {
-      return allowed.map((a) => JSON.stringify(a.value)).join(' | ');
-    }
-
-    const t = p?.type;
-    if (Array.isArray(t)) {
-      return t.map(mapJsonTypeToTs).join(' | ');
-    }
-    if (typeof t === 'string') {
-      return mapJsonTypeToTs(t);
-    }
-
-    return 'unknown';
-  }
-
-  function mapJsonTypeToTs(t) {
+  function mapJsonTypeToTs(t: JsonSchemaPrimitiveType): string {
     switch (t) {
       case 'string':
       case 'number':
@@ -139,16 +147,38 @@ function createSchemaHelpers(schema) {
         return 'unknown[]';
       case 'object':
         return 'Record<string, unknown>';
-      default:
-        return 'unknown';
+      default: {
+        // Exhaustive guard (should never happen if JsonSchemaPrimitiveType is correct)
+        const _exhaustive: never = t;
+        return _exhaustive;
+      }
     }
   }
 
-  function isSafeIdentifier(name) {
+  function inferTsType(prop: JsonSchemaProperty): string {
+    const p = deref(prop);
+    const allowed = extractAllowed(p);
+
+    if (allowed.length > 0) {
+      return allowed.map((a) => JSON.stringify(a.value)).join(' | ');
+    }
+
+    const t = p.type;
+    if (Array.isArray(t)) {
+      return t.map(mapJsonTypeToTs).join(' | ');
+    }
+    if (typeof t === 'string') {
+      return mapJsonTypeToTs(t);
+    }
+
+    return 'unknown';
+  }
+
+  function isSafeIdentifier(name: string): boolean {
     return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name);
   }
 
-  function renderPropertyKey(name) {
+  function renderPropertyKey(name: string): string {
     return isSafeIdentifier(name) ? name : JSON.stringify(name);
   }
 
@@ -162,24 +192,17 @@ function createSchemaHelpers(schema) {
   };
 }
 
-function renderMarkdown(schema) {
-  const {
-    deref,
-    extractAllowed,
-    extractDefault,
-    extractDescription,
-    inferTsType,
-  } = createSchemaHelpers(schema);
+function renderMarkdown(schema: JsonSchema): string {
+  const { deref, extractAllowed, extractDefault, extractDescription, inferTsType } =
+    createSchemaHelpers(schema);
 
-  const lines = [];
+  const lines: string[] = [];
   lines.push('# TypeScript Formatter Rules (dprint)');
   lines.push('');
   lines.push('> Generated from the official dprint-plugin-typescript JSON schema.');
   lines.push('');
 
-  const entries = Object.entries(schema.properties ?? {}).sort(([a], [b]) =>
-    a.localeCompare(b),
-  );
+  const entries = Object.entries(schema.properties ?? {}).sort(([a], [b]) => a.localeCompare(b));
 
   for (const [name, prop] of entries) {
     const resolved = deref(prop);
@@ -212,28 +235,20 @@ function renderMarkdown(schema) {
     lines.push('');
   }
 
-  return lines.join('\n');
+  return lines.join('\n') + '\n';
 }
 
-function renderTypes(schema) {
-  const {
-    deref,
-    extractAllowed,
-    extractDefault,
-    extractDescription,
-    inferTsType,
-    renderPropertyKey,
-  } = createSchemaHelpers(schema);
+function renderTypes(schema: JsonSchema): string {
+  const { deref, extractAllowed, extractDefault, extractDescription, inferTsType, renderPropertyKey } =
+    createSchemaHelpers(schema);
 
-  const lines = [];
+  const lines: string[] = [];
   lines.push('// Generated from dprint-plugin-typescript JSON schema');
   lines.push('// Do not edit manually.');
   lines.push('');
   lines.push('export interface DprintTypeScriptOptions {');
 
-  const entries = Object.entries(schema.properties ?? {}).sort(([a], [b]) =>
-    a.localeCompare(b),
-  );
+  const entries = Object.entries(schema.properties ?? {}).sort(([a], [b]) => a.localeCompare(b));
 
   for (const [name, prop] of entries) {
     const resolved = deref(prop);
@@ -273,19 +288,23 @@ function renderTypes(schema) {
   return lines.join('\n').trimEnd() + '\n';
 }
 
-async function main() {
+async function main(): Promise<void> {
   const schema = await loadSchema();
 
-  await fs.mkdir(path.dirname(DOCS_OUT), { recursive: true });
-  await fs.mkdir(path.dirname(TYPES_OUT), { recursive: true });
+  const docsOut = path.join(PACKAGE_ROOT, DOCS_OUT);
+  const typesOut = path.join(PACKAGE_ROOT, TYPES_OUT);
 
-  await fs.writeFile(DOCS_OUT, renderMarkdown(schema) + '\n', 'utf8');
-  await fs.writeFile(TYPES_OUT, renderTypes(schema), 'utf8');
+  await fs.mkdir(path.dirname(docsOut), { recursive: true });
+  await fs.mkdir(path.dirname(typesOut), { recursive: true });
 
-  globalThis.console.log('✅ Generated TypeScript formatter docs and types');
+  await fs.writeFile(docsOut, renderMarkdown(schema), 'utf8');
+  await fs.writeFile(typesOut, renderTypes(schema), 'utf8');
+
+  console.log('✅ Generated TypeScript formatter docs and types');
 }
 
-main().catch((err) => {
-  globalThis.console.error(err);
+main().catch((err: unknown) => {
+  console.error(err);
   process.exit(1);
 });
+

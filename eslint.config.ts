@@ -22,10 +22,10 @@ const config: Linter.Config[] = [
         sourceType: 'module',
       },
       globals: {
-        // Node globals (so we don't need `globalThis.console`, etc.)
         console: 'readonly',
         process: 'readonly',
         fetch: 'readonly',
+        URL: 'readonly',
       },
     },
     plugins: {
@@ -48,7 +48,6 @@ const config: Linter.Config[] = [
 
       '@typescript-eslint/no-redeclare': 'error',
 
-      // This is a config package — logs are fine
       'no-console': 'off',
     },
   },

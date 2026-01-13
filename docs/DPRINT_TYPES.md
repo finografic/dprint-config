@@ -39,4 +39,3 @@ This regenerates:
 
 - `docs/RULES_TYPESCRIPT.md`
 - `types/dprint-typescript-options.d.ts`
-

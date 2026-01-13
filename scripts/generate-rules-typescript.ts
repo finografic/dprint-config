@@ -41,7 +41,7 @@ type JsonSchemaProperty = {
   description?: string;
   default?: unknown;
   enum?: unknown[];
-  oneOf?: Array<{ const?: unknown; description?: string } & Record<string, unknown>>;
+  oneOf?: Array<{ const?: unknown; description?: string; } & Record<string, unknown>>;
 } & Record<string, unknown>;
 
 async function loadSchema(): Promise<JsonSchema> {
@@ -99,7 +99,9 @@ function createSchemaHelpers(schema: JsonSchema) {
     return { ...deref(resolved as JsonSchemaProperty, seen), ...rest };
   }
 
-  function extractAllowed(prop: JsonSchemaProperty): Array<{ value: unknown; description: string }> {
+  function extractAllowed(
+    prop: JsonSchemaProperty,
+  ): Array<{ value: unknown; description: string; }> {
     const p = deref(prop);
 
     // Some schemas use enum, but dprint schemas commonly use oneOf + const.
@@ -108,7 +110,7 @@ function createSchemaHelpers(schema: JsonSchema) {
     }
 
     if (Array.isArray(p.oneOf)) {
-      const values: Array<{ value: unknown; description: string }> = [];
+      const values: Array<{ value: unknown; description: string; }> = [];
       for (const option of p.oneOf) {
         if (option && typeof option === 'object' && 'const' in option) {
           values.push({
@@ -244,8 +246,14 @@ function renderMarkdown(schema: JsonSchema): string {
 }
 
 function renderTypes(schema: JsonSchema): string {
-  const { deref, extractAllowed, extractDefault, extractDescription, inferTsType, renderPropertyKey } =
-    createSchemaHelpers(schema);
+  const {
+    deref,
+    extractAllowed,
+    extractDefault,
+    extractDescription,
+    inferTsType,
+    renderPropertyKey,
+  } = createSchemaHelpers(schema);
 
   const lines: string[] = [];
   lines.push('// Generated from dprint-plugin-typescript JSON schema');
@@ -312,4 +320,3 @@ main().catch((err: unknown) => {
   console.error(err);
   process.exit(1);
 });
-

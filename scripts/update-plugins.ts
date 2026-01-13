@@ -40,4 +40,3 @@ for (const configFile of DPRINT_CONFIG_FILES) {
 }
 
 console.log('\n✅ dprint plugin update complete');
-

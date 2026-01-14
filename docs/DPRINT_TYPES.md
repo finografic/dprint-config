@@ -37,5 +37,5 @@ pnpm rules.typescript.generate
 
 This regenerates:
 
-- `docs/RULES_TYPESCRIPT.md`
+- `docs/rules/typescript.rules.md`
 - `types/dprint-typescript-options.d.ts`

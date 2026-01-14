@@ -10,7 +10,7 @@ const SCHEMA_URL =
 // This should match the remote schema shape (definitions + properties + $ref).
 const LOCAL_SCHEMA_PATH = 'scripts/schema.json';
 
-const DOCS_OUT = 'docs/RULES_TYPESCRIPT.md';
+const DOCS_OUT = 'docs/rules/typescript.rules.md';
 const TYPES_OUT = 'types/dprint-typescript-options.d.ts';
 
 // Resolve output relative to the package root (not the current working directory).
@@ -53,10 +53,11 @@ async function loadSchema(): Promise<JsonSchema> {
     }
     return (await res.json()) as JsonSchema;
   } catch (err) {
-    const local = await fs.readFile(LOCAL_SCHEMA_PATH, 'utf8');
+    const localSchemaPath = path.join(PACKAGE_ROOT, LOCAL_SCHEMA_PATH);
+    const local = await fs.readFile(localSchemaPath, 'utf8');
     const schema = JSON.parse(local) as JsonSchema;
     console.warn(
-      `⚠️  Using local schema fallback at ${LOCAL_SCHEMA_PATH} because remote fetch failed.`,
+      `⚠️  Using local schema fallback at ${localSchemaPath} because remote fetch failed.`,
     );
     console.warn(`   Remote: ${SCHEMA_URL}`);
     console.warn(`   Reason: ${err instanceof Error ? err.message : String(err)}`);

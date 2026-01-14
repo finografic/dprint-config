@@ -20,7 +20,7 @@
   "files": [
     "dprint.jsonc",
     "configs/*.jsonc",
-    "docs/RULES_TYPESCRIPT.md",
+    "docs/**/*.md",
     "types/*.d.ts",
     "README.md",
     "TODO.md"

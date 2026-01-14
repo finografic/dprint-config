@@ -19,27 +19,29 @@ Create `dprint.jsonc` in your repo root:
 ```jsonc
 {
   "$schema": "https://dprint.dev/schemas/v0.json",
-  "extends": "node_modules/@finografic/dprint-config/dprint.jsonc"
+  "extends": "node_modules/@finografic/dprint-config/dprint.jsonc",
 }
 ```
 
-## Maintainers: updating pinned plugin versions
+## Maintainers
 
-This package pins plugin versions via **WASM plugin URLs**.
+- **Pinned plugin versions**
 
-```bash
-pnpm dprint.plugins.update
-```
+  This package pins plugin versions via **WASM plugin URLs**. To refresh them:
 
-## Maintainers: repo scripts (tsx)
+  ```bash
+  pnpm dprint.plugins.update
+  ```
 
-This repo’s maintainer scripts live in `scripts/*.ts` and run via `tsx` (no `.mjs`).
+- **Repo scripts (tsx)**
 
-- Generate TypeScript plugin docs + types:
+  Maintainer scripts live in `scripts/*.ts` and run via `tsx` (no `.mjs`).
 
-```bash
-pnpm rules.typescript.generate
-```
+  - Generate TypeScript plugin docs + types:
+
+    ```bash
+    pnpm rules.typescript.generate
+    ```
 
 ## What it formats
 

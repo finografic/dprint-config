@@ -1,26 +1,25 @@
 {
   "$schema": "https://dprint.dev/schemas/v0.json",
   "typescript": {
-    /* indentation and whitespace */
+
     "indentWidth": 2,
     "useTabs": false,
     "newLineKind": "lf",
     "lineWidth": 100,
 
-    /* semicolons and quotes */
-    "semiColons": "prefer", // default: "prefer", setting: "always" ??
+
+    "semiColons": "prefer",
     "quoteStyle": "preferSingle",
     "quoteProps": "asNeeded",
 
-    /* trailing commas */
+
     "trailingCommas": "onlyMultiLine",
 
-    /* object and type literal spacing */
-    "objectExpression.spaceSurroundingProperties": true,
-    "objectPattern.spaceSurroundingProperties": true,
-    "typeLiteral.spaceSurroundingProperties": true,
 
-    /* imports and exports */
+            "objectExpression.spaceSurroundingProperties": true,
+            "objectPattern.spaceSurroundingProperties": true,
+            "typeLiteral.spaceSurroundingProperties": true,
+
     "importDeclaration.sortNamedImports": "caseInsensitive",
     "importDeclaration.sortTypeOnlyImports": "none",
     "importDeclaration.spaceSurroundingNamedImports": true,
@@ -34,22 +33,22 @@
     "module.sortImportDeclarations": "caseInsensitive",
     "module.sortExportDeclarations": "caseInsensitive",
 
-    /* braces (default, conservative) */
+
     "bracePosition": "sameLineUnlessHanging",
 
-    /* parentheses spacing */
+
     "arguments.spaceAround": false,
     "parameters.spaceAround": false,
     "parenExpression.spaceAround": false,
 
-    /* comments */
+
     "commentLine.forceSpaceAfterSlashes": true,
 
-    /* ignores */
+
     "ignoreFileCommentText": "dprint-ignore-file",
     "ignoreNodeCommentText": "dprint-ignore",
 
-    /* control flow: braces and layout */
+
     "ifStatement.useBraces": "whenNotSingleLine",
     "ifStatement.bracePosition": "sameLineUnlessHanging",
     "ifStatement.spaceAfterIfKeyword": true,
@@ -91,7 +90,7 @@
     "tryStatement.bracePosition": "sameLineUnlessHanging",
     "tryStatement.nextControlFlowPosition": "sameLine",
 
-    /* functions and methods */
+
     "functionDeclaration.bracePosition": "sameLineUnlessHanging",
     "functionDeclaration.spaceBeforeParentheses": false,
 
@@ -114,7 +113,7 @@
     "setAccessor.bracePosition": "sameLineUnlessHanging",
     "setAccessor.spaceBeforeParentheses": false,
 
-    /* types and generics */
+
     "typeLiteral.separatorKind": "semiColon",
     "typeLiteral.separatorKind.singleLine": "semiColon",
     "typeLiteral.separatorKind.multiLine": "semiColon",
@@ -136,7 +135,6 @@
 
     "mappedType.preferSingleLine": false,
 
-    /* enums and modules */
     "enumDeclaration.bracePosition": "sameLineUnlessHanging",
     "enumDeclaration.memberSpacing": "maintain",
     "enumDeclaration.trailingCommas": "onlyMultiLine",
@@ -145,7 +143,6 @@
 
     "staticBlock.bracePosition": "sameLineUnlessHanging",
 
-    /* expressions and operators */
     "binaryExpression.operatorPosition": "nextLine",
     "binaryExpression.preferSingleLine": false,
     "binaryExpression.spaceSurroundingBitwiseAndArithmeticOperator": true,
@@ -160,7 +157,7 @@
 
     "operatorPosition": "nextLine",
 
-    /* parameters, arguments, and lists */
+
     "parameters.preferHanging": "never",
     "parameters.preferSingleLine": false,
     "parameters.trailingCommas": "onlyMultiLine",
@@ -174,8 +171,7 @@
     "tupleType.preferHanging": "never",
     "tupleType.spaceAround": false,
 
-    /* objects, arrays, and patterns */
-    "objectExpression.preferHanging": false,
+        "objectExpression.preferHanging": false,
     "objectExpression.preferSingleLine": false,
     "objectExpression.trailingCommas": "onlyMultiLine",
 
@@ -193,7 +189,7 @@
     "arrayPattern.spaceAround": false,
     "arrayPattern.trailingCommas": "onlyMultiLine",
 
-    /* jsx and tsx */
+
     "jsx.quoteStyle": "preferDouble",
 
     "jsx.multiLineParens": "prefer",

@@ -5,6 +5,19 @@
     "lineWidth": 100,
     "useTabs": false,
     "associations": [
+      "**/*.json",
+      "**/*.jsonc",
+      ".eslintrc.json",
+      "dprint.jsonc"
+    ]
+  },
+  "jsonc": {
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "useTabs": false,
+    "associations": [
+      "**/*.json",
+      "**/*.jsonc",
       ".eslintrc.json",
       "dprint.jsonc"
     ]

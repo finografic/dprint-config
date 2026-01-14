@@ -1,6 +1,6 @@
-# TypeScript Formatter Rules (dprint)
+# TypeScript Formatter Rules
 
-> Generated from the official dprint-plugin-typescript JSON schema.
+> Generated from the dprint-plugin-typescript JSON schema.
 
 ## `arguments.preferHanging`
 

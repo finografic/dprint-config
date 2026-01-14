@@ -3,23 +3,16 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { getAllConfigFilenames } from 'configs/plugins.config';
+
 /**
- * List of dprint config files that own plugin definitions.
- * Each file will be updated independently using:
+ * Updates dprint plugin versions in all config files.
  *
+ * Each config file is updated independently using:
  *   dprint config update -c <file>
  *
  * This script is for maintainers only.
  */
-const DPRINT_CONFIG_FILES = [
-  'dprint-json.jsonc',
-  'dprint-plugin-typescript.jsonc',
-  'dprint-markdown.jsonc',
-  'dprint-toml.jsonc',
-  'dprint-malva.jsonc',
-  'dprint-markup.jsonc',
-  'dprint-yaml.jsonc',
-] as const;
 
 // Resolve paths relative to the package root (not the current working directory).
 const PACKAGE_ROOT = join(fileURLToPath(new URL('.', import.meta.url)), '..');
@@ -28,7 +21,9 @@ function run(cmd: string) {
   execSync(cmd, { stdio: 'inherit' });
 }
 
-for (const configFile of DPRINT_CONFIG_FILES) {
+const configFiles = getAllConfigFilenames();
+
+for (const configFile of configFiles) {
   const fullPath = join(PACKAGE_ROOT, 'configs', configFile);
   if (!existsSync(fullPath)) {
     console.warn(`⚠️  Skipping missing config: ${configFile}`);

@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 /**
- * NOTE: Generates a flattened dprint.jsonc for use as a global config in user home folder.
+ * Generates a flattened dprint.jsonc for use as a global config in user home folder.
  *
  * Usage:
  *   pnpm home.config.generate          # outputs to generated/dprint-home.jsonc
@@ -13,23 +13,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { getAllConfigPaths, getOrderedPluginKeys, PLUGINS } from 'configs/plugins.config';
+
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(SCRIPT_DIR, '..');
 
 const OUTPUT_DIR = path.join(PACKAGE_ROOT, 'generated');
 const OUTPUT_FILE = 'dprint-home.jsonc';
 const HOME_TARGET = path.join(os.homedir(), 'dprint.jsonc');
-
-// Config files to merge (order matters for override precedence)
-const CONFIG_FILES = [
-  'configs/dprint-json.jsonc',
-  'configs/dprint-plugin-typescript.jsonc',
-  'configs/dprint-markdown.jsonc',
-  'configs/dprint-toml.jsonc',
-  'configs/dprint-yaml.jsonc',
-  'configs/dprint-malva.jsonc',
-  'configs/dprint-markup.jsonc',
-];
 
 /**
  * Clean JSONC for JSON.parse: strips comments and trailing commas.
@@ -105,7 +96,9 @@ async function main(): Promise<void> {
   const plugins: string[] = [];
   const pluginSettings: Record<string, unknown> = {};
 
-  for (const configPath of CONFIG_FILES) {
+  const configPaths = getAllConfigPaths();
+
+  for (const configPath of configPaths) {
     const config = await readConfig(configPath);
 
     if (Array.isArray(config.plugins)) {
@@ -154,17 +147,27 @@ async function main(): Promise<void> {
 
   const jsonOutput = JSON.stringify(flatConfig, null, 2);
 
-  // Inject section comments for readability
-  const withComments = jsonOutput
-    .replace(/^(\s*)"excludes":/m, '$1// Global excludes\n$1"excludes":')
-    .replace(/^(\s*)"json":/m, '\n$1// ─── JSON Plugin ───\n$1"json":')
-    .replace(/^(\s*)"typescript":/m, '\n$1// ─── TypeScript Plugin ───\n$1"typescript":')
-    .replace(/^(\s*)"markdown":/m, '\n$1// ─── Markdown Plugin ───\n$1"markdown":')
-    .replace(/^(\s*)"toml":/m, '\n$1// ─── TOML Plugin ───\n$1"toml":')
-    .replace(/^(\s*)"yaml":/m, '\n$1// ─── YAML Plugin ───\n$1"yaml":')
-    .replace(/^(\s*)"malva":/m, '\n$1// ─── Malva Plugin (CSS/SCSS/Sass) ───\n$1"malva":')
-    .replace(/^(\s*)"markup":/m, '\n$1// ─── Markup Plugin (HTML/Vue/Svelte) ───\n$1"markup":')
-    .replace(/^(\s*)"plugins":/m, '\n$1// ─── Plugin URLs ───\n$1"plugins":');
+  // Build section comment replacements from plugin config
+  let withComments = jsonOutput.replace(
+    /^(\s*)"excludes":/m,
+    '$1// Global excludes\n$1"excludes":',
+  );
+
+  // Add plugin section comments based on centralized config
+  const pluginKeys = getOrderedPluginKeys();
+  for (const key of pluginKeys) {
+    const plugin = PLUGINS[key];
+    const regex = new RegExp(`^(\\s*)"${plugin.configKey}":`, 'm');
+    withComments = withComments.replace(
+      regex,
+      `\n$1// ─── ${plugin.displayName} Plugin ───\n$1"${plugin.configKey}":`,
+    );
+  }
+
+  withComments = withComments.replace(
+    /^(\s*)"plugins":/m,
+    '\n$1// ─── Plugin URLs ───\n$1"plugins":',
+  );
 
   const output = header + withComments + '\n';
 

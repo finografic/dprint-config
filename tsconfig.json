@@ -19,12 +19,20 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "configs/*": ["./configs/*"],
+      "docs/*": ["./docs/*"],
+      "scripts/*": ["./scripts/*"],
+      "schemas/*": ["./schemas/*"],
+      "types/*": ["./types/*"]
+    }
   },
   "include": [
     "eslint.config.ts",
     "*.mjs",
     "*.ts",
+    "configs/**/*.ts",
     "scripts/**/*.ts"
   ],
   "exclude": [

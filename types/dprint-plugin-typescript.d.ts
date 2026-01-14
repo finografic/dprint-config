@@ -1,7 +1,7 @@
 // Generated from dprint-plugin-typescript JSON schema
 // Do not edit manually.
 
-export interface DprintTypeScriptOptions {
+export interface TypescriptOptions {
   /**
    * Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines.
    *

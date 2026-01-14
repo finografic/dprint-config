@@ -20,10 +20,11 @@
   "files": [
     "dprint.jsonc",
     "configs/*.jsonc",
+    "configs/plugins.config.ts",
     "docs/**/*.md",
+    "schemas/*.json",
     "types/*.d.ts",
-    "README.md",
-    "TODO.md"
+    "README.md"
   ],
   "scripts": {
     "========== LINTING": "===================================================",
@@ -34,7 +35,7 @@
     "format.check": "dprint check",
     "·········· DPRINT COMMANDS": "···········································",
     "dprint.plugins.update": "tsx ./scripts/update-plugins.ts",
-    "rules.typescript.generate": "tsx ./scripts/generate-rules-typescript.ts",
+    "rules.generate": "tsx ./scripts/generate-rules.ts",
     "home.config.generate": "tsx ./scripts/generate-home-config.ts",
     "home.config.install": "tsx ./scripts/generate-home-config.ts --install",
     "·········· PUBLISH.GITHUB": "············································",

@@ -105,8 +105,8 @@
     "method.bracePosition": "sameLineUnlessHanging",
     "method.spaceBeforeParentheses": false,
 
-            "constructor.bracePosition": "sameLineUnlessHanging",
-            "constructor.spaceBeforeParentheses": false,
+    "constructor.bracePosition": "sameLineUnlessHanging",
+    "constructor.spaceBeforeParentheses": false,
 
     "getAccessor.bracePosition": "sameLineUnlessHanging",
     "getAccessor.spaceBeforeParentheses": false,

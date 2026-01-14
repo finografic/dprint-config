@@ -35,6 +35,8 @@
     "·········· DPRINT COMMANDS": "···········································",
     "dprint.plugins.update": "tsx ./scripts/update-plugins.ts",
     "rules.typescript.generate": "tsx ./scripts/generate-rules-typescript.ts",
+    "home.config.generate": "tsx ./scripts/generate-home-config.ts",
+    "home.config.install": "tsx ./scripts/generate-home-config.ts --install",
     "·········· PUBLISH.GITHUB": "············································",
     "release.github.patch": "pnpm run release.check && pnpm version patch && git push --follow-tags",
     "release.github.minor": "pnpm run release.check && pnpm version minor && git push --follow-tags",

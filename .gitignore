@@ -5,6 +5,9 @@ node_modules/
 dist/
 build/
 
+# Generated (home config, etc.)
+generated/
+
 # Environment files
 .env
 .env.local

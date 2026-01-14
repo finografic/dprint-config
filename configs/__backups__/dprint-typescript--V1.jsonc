@@ -1,0 +1,13 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "typescript": {
+    "lineWidth": 100,
+    "semiColons": "always",
+    "quoteStyle": "preferSingle",
+    "quoteProps": "asNeeded",
+    "trailingCommas": "onlyMultiLine",
+  },
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.95.13.wasm",
+  ]
+}

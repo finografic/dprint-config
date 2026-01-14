@@ -4,25 +4,15 @@
     "indentWidth": 2,
     "lineWidth": 100,
     "useTabs": false,
+    // Handle both .json and .jsonc files
     "associations": [
       "**/*.json",
       "**/*.jsonc",
       ".eslintrc.json",
-      "dprint.jsonc"
-    ]
-  },
-  "jsonc": {
-    "indentWidth": 2,
-    "lineWidth": 100,
-    "useTabs": false,
-    "associations": [
-      "**/*.json",
-      "**/*.jsonc",
-      ".eslintrc.json",
-      "dprint.jsonc"
-    ]
+      "dprint.jsonc",
+    ],
   },
   "plugins": [
-    "https://plugins.dprint.dev/json-0.21.1.wasm"
-  ]
+    "https://plugins.dprint.dev/json-0.21.1.wasm",
+  ],
 }

@@ -12,7 +12,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "strict": true,
-    "noUnusedLocals": true,
+    // Disabled: ESLint handles this with better ignore patterns (varsIgnorePattern: '^_')
+    // "noUnusedLocals": true,
     "noEmit": true,
     "esModuleInterop": true,
     "isolatedModules": true,

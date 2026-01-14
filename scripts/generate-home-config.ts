@@ -23,7 +23,7 @@ const HOME_TARGET = path.join(os.homedir(), 'dprint.jsonc');
 // Config files to merge (order matters for override precedence)
 const CONFIG_FILES = [
   'configs/dprint-json.jsonc',
-  'configs/dprint-typescript.jsonc',
+  'configs/dprint-plugin-typescript.jsonc',
   'configs/dprint-markdown.jsonc',
   'configs/dprint-toml.jsonc',
   'configs/dprint-yaml.jsonc',

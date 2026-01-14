@@ -4,7 +4,7 @@
   "$schema": "https://dprint.dev/schemas/v0.json",
   "extends": [
     "./configs/dprint-json.jsonc",
-    "./configs/dprint-typescript.jsonc",
+    "./configs/dprint-plugin-typescript.jsonc",
     "./configs/dprint-markdown.jsonc",
     "./configs/dprint-toml.jsonc",
     "./configs/dprint-yaml.jsonc",

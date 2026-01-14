@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
  */
 const DPRINT_CONFIG_FILES = [
   'dprint-json.jsonc',
-  'dprint-typescript.jsonc',
+  'dprint-plugin-typescript.jsonc',
   'dprint-markdown.jsonc',
   'dprint-toml.jsonc',
   'dprint-malva.jsonc',

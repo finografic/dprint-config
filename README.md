@@ -27,21 +27,21 @@ Create `dprint.jsonc` in your repo root:
 
 - **Pinned plugin versions**
 
-  This package pins plugin versions via **WASM plugin URLs**. To refresh them:
+This package pins plugin versions via **WASM plugin URLs**. To refresh them:
 
-  ```bash
-  pnpm dprint.plugins.update
-  ```
+```bash
+pnpm dprint.plugins.update
+```
 
 - **Repo scripts (tsx)**
 
-  Maintainer scripts live in `scripts/*.ts` and run via `tsx` (no `.mjs`).
+Maintainer scripts live in `scripts/*.ts` and run via `tsx` (no `.mjs`).
 
-  - Generate TypeScript plugin docs + types:
+- Generate TypeScript plugin docs + types:
 
-    ```bash
-    pnpm rules.typescript.generate
-    ```
+```bash
+pnpm rules.typescript.generate
+```
 
 ## What it formats
 

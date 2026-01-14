@@ -19,7 +19,6 @@
     "**/node_modules",
     "**/*-lock.json",
     "**/*-lock.yaml",
-    // Generated files
     "**/*.d.ts",
     "docs/**/*.rules.md",
     "schemas/**/*.json",

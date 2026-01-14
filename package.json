@@ -1,6 +1,6 @@
 {
   "name": "@finografic/dprint-config",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Opinionated dprint configuration for the finografic ecosystem",
   "license": "MIT",
   "homepage": "https://github.com/finografic/dprint-config",

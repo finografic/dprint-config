@@ -19,10 +19,10 @@
   ],
   "files": [
     "dprint.jsonc",
-    "configs/*.jsonc",
-    "configs/plugins.config.ts",
+    "configs/overrides/*.jsonc",
+    "configs/plugins.registry.ts",
     "docs/**/*.md",
-    "schemas/*.json",
+    "internal/schemas/*.json",
     "types/*.d.ts",
     "README.md"
   ],

@@ -24,7 +24,7 @@ import {
   getPluginPaths,
   getSchemaUrl,
   PLUGINS,
-} from 'configs/plugins.config';
+} from 'configs/plugins.registry';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(SCRIPT_DIR, '..');

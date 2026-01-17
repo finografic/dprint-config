@@ -5,6 +5,7 @@
  *
  * Usage:
  *   pnpm rules.generate                    # Generate for all plugins
+ *   pnpm rules.generate --force            # Clear cached schemas and regenerate
  *   pnpm rules.generate dprint-plugin-typescript  # Generate for specific plugin
  *   pnpm rules.generate malva markup_fmt   # Generate for multiple plugins
  *
@@ -15,6 +16,9 @@
  *   internal/schemas/{plugin}.schema.json  # Cached JSON schema
  *
  * Note: config/overrides/{plugin}.jsonc is NOT overwritten (customized configs).
+ *
+ * The --force flag clears cached schemas before fetching, ensuring fresh schemas
+ * are used. This is useful after updating plugin versions.
  */
 
 import fs from 'node:fs/promises';
@@ -191,10 +195,20 @@ function createSchemaHelpers(schema: JsonSchema) {
 
 // ─── Schema Loading ───
 
-async function loadSchema(pluginKey: string): Promise<JsonSchema | null> {
+async function loadSchema(pluginKey: string, forceRefresh = false): Promise<JsonSchema | null> {
   const schemaUrl = getSchemaUrl(pluginKey);
   const paths = getPluginPaths(pluginKey);
   const localSchemaPath = path.join(PACKAGE_ROOT, paths.schema);
+
+  // Delete cached schema if --force flag is set
+  if (forceRefresh) {
+    try {
+      await fs.unlink(localSchemaPath);
+      console.log(`   🗑️  Cleared cached schema for ${pluginKey}`);
+    } catch {
+      // File doesn't exist, that's fine
+    }
+  }
 
   // Try remote first
   try {
@@ -426,7 +440,7 @@ function renderDefaultConfig(schema: JsonSchema, pluginKey: string): string {
 
 // ─── Main ───
 
-async function generateForPlugin(pluginKey: string): Promise<boolean> {
+async function generateForPlugin(pluginKey: string, forceRefresh = false): Promise<boolean> {
   const plugin = PLUGINS[pluginKey];
   if (!plugin) {
     console.error(`❌ Unknown plugin: ${pluginKey}`);
@@ -435,7 +449,7 @@ async function generateForPlugin(pluginKey: string): Promise<boolean> {
 
   console.log(`\n📦 ${plugin.displayName} (${pluginKey})`);
 
-  const schema = await loadSchema(pluginKey);
+  const schema = await loadSchema(pluginKey, forceRefresh);
   if (!schema) {
     return false;
   }
@@ -487,10 +501,16 @@ async function generateForPlugin(pluginKey: string): Promise<boolean> {
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
 
+  // Check for --force flag
+  const forceRefresh = args.includes('--force');
+  const pluginArgs = args.filter((arg) => !arg.startsWith('-'));
+
   // Determine which plugins to process
-  const pluginKeys = args.length > 0
-    ? args.filter((arg) => !arg.startsWith('-'))
-    : getOrderedPluginKeys();
+  const pluginKeys = pluginArgs.length > 0 ? pluginArgs : getOrderedPluginKeys();
+
+  if (forceRefresh) {
+    console.log('🔄 Force refresh: clearing cached schemas...');
+  }
 
   console.log('🔧 Generating plugin rules and types...');
 
@@ -498,7 +518,7 @@ async function main(): Promise<void> {
   let failed = 0;
 
   for (const key of pluginKeys) {
-    const ok = await generateForPlugin(key);
+    const ok = await generateForPlugin(key, forceRefresh);
     if (ok) {
       success++;
     } else {

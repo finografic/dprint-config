@@ -28,27 +28,36 @@ Create `dprint.jsonc` in your repo root:
 Maintainer scripts live in `scripts/*.ts` and run via `tsx`.
 
 ```bash
-# Update all plugin versions (WASM URLs)
-pnpm dprint.plugins.update
+# Update plugin versions AND regenerate schemas/docs/types (recommended)
+pnpm dprint.update
 
-# Generate docs + types for all plugins
-pnpm rules.generate
+# Or run individually:
+pnpm dprint.plugins.update        # Update plugin versions in defaults/ and overrides/
+pnpm dprint.plugins.generate       # Generate docs/types/defaults from schemas
+pnpm dprint.plugins.generate --force  # Clear cached schemas and regenerate
 
 # Generate flattened ~/dprint.jsonc
 pnpm home.config.generate
+pnpm home.config.install           # Copy to ~/dprint.jsonc
 ```
 
 ### Plugin registry
 
 All plugin metadata is centralized in `config/plugins.registry.ts`. Generated outputs follow a consistent naming convention:
 
+```text
+config/defaults/{plugin}.jsonc        # Generated reference (all options with defaults)
+config/overrides/{plugin}.jsonc       # Customized config (consumed, never overwritten)
+docs/rules/{plugin}.rules.md          # Generated documentation
+internal/schemas/{plugin}.schema.json # Cached JSON schema
+types/{plugin}.d.ts                   # TypeScript types
 ```
-config/defaults/{plugin}.jsonc        # Generated reference (all options)
-config/overrides/{plugin}.jsonc        # Customized config (consumed)
-docs/rules/{plugin}.rules.md           # Generated documentation
-internal/schemas/{plugin}.schema.json  # Cached JSON schema
-types/{plugin}.d.ts                    # TypeScript types
-```
+
+**Workflow:**
+
+- `dprint.plugins.update` updates WASM plugin URLs in both `defaults/` and `overrides/`
+- `dprint.plugins.generate` fetches fresh schemas and regenerates docs/types/defaults
+- Use `--force` flag to clear cached schemas and ensure fresh data after plugin updates
 
 ## What it formats
 

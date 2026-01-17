@@ -8,10 +8,16 @@ import { getAllConfigFilenames } from 'config/plugins.registry';
 /**
  * Updates dprint plugin versions in all config files.
  *
+ * Updates both:
+ *   - config/overrides/*.jsonc (customized configs)
+ *   - config/defaults/*.jsonc (reference configs)
+ *
  * Each config file is updated independently using:
  *   dprint config update -c <file>
  *
  * This script is for maintainers only.
+ * Typically run via: pnpm dprint.plugins.update
+ * (which also regenerates schemas/docs/types with --force)
  */
 
 // Resolve paths relative to the package root (not the current working directory).
@@ -23,14 +29,29 @@ function run(cmd: string) {
 
 const configFiles = getAllConfigFilenames();
 
+// Update overrides (customized configs)
+console.log('\n📝 Updating plugin versions in overrides...');
 for (const configFile of configFiles) {
   const fullPath = join(PACKAGE_ROOT, 'config', 'overrides', configFile);
   if (!existsSync(fullPath)) {
-    console.warn(`⚠️  Skipping missing config: ${configFile}`);
+    console.warn(`⚠️  Skipping missing override: ${configFile}`);
     continue;
   }
 
-  console.log(`\n🔄 Updating plugins in ${configFile}`);
+  console.log(`\n🔄 Updating plugins in overrides/${configFile}`);
+  run(`dprint config update -c ${fullPath}`);
+}
+
+// Update defaults (reference configs)
+console.log('\n📝 Updating plugin versions in defaults...');
+for (const configFile of configFiles) {
+  const fullPath = join(PACKAGE_ROOT, 'config', 'defaults', configFile);
+  if (!existsSync(fullPath)) {
+    console.warn(`⚠️  Skipping missing default: ${configFile}`);
+    continue;
+  }
+
+  console.log(`\n🔄 Updating plugins in defaults/${configFile}`);
   run(`dprint config update -c ${fullPath}`);
 }
 

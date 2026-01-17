@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { getAllConfigFilenames } from 'configs/plugins.registry';
+import { getAllConfigFilenames } from 'config/plugins.registry';
 
 /**
  * Updates dprint plugin versions in all config files.

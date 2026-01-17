@@ -21,10 +21,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "configs/*": ["./configs/*"],
+      "config/*": ["config/*"],
       "docs/*": ["./docs/*"],
       "scripts/*": ["./scripts/*"],
-      "schemas/*": ["./schemas/*"],
+      "internal/schemas/*": ["./internal/schemas/*"],
       "types/*": ["./types/*"]
     }
   },
@@ -32,7 +32,7 @@
     "eslint.config.ts",
     "*.mjs",
     "*.ts",
-    "configs/**/*.ts",
+    "config/**/*.ts",
     "scripts/**/*.ts"
   ],
   "exclude": [

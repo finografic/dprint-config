@@ -13,7 +13,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { getAllConfigPaths, getOrderedPluginKeys, PLUGINS } from 'configs/plugins.registry';
+import { getAllConfigPaths, getOrderedPluginKeys, PLUGINS } from 'config/plugins.registry';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_ROOT = path.resolve(SCRIPT_DIR, '..');

@@ -21,18 +21,25 @@
     "typeLiteral.spaceSurroundingProperties": true,
 
     /* imports and exports */
-    "importDeclaration.sortNamedImports": "caseInsensitive",
+    // NOTE: fixed 2026-01-17 to AVOID CONFLICT with eslint-plugin-simple-import-sort
+    // "importDeclaration.sortNamedImports": "caseInsensitive",
+    "importDeclaration.sortNamedImports": "maintain",
     "importDeclaration.sortTypeOnlyImports": "none",
     "importDeclaration.spaceSurroundingNamedImports": true,
     "importDeclaration.trailingCommas": "onlyMultiLine",
 
-    "exportDeclaration.sortNamedExports": "caseInsensitive",
+    // NOTE: fixed 2026-01-17 to AVOID CONFLICT with eslint-plugin-simple-import-sort
+    // "exportDeclaration.sortNamedExports": "caseInsensitive",
+    "exportDeclaration.sortNamedExports": "maintain",
     "exportDeclaration.sortTypeOnlyExports": "none",
     "exportDeclaration.spaceSurroundingNamedExports": true,
     "exportDeclaration.trailingCommas": "onlyMultiLine",
 
-    "module.sortImportDeclarations": "caseInsensitive",
-    "module.sortExportDeclarations": "caseInsensitive",
+    // NOTE: fixed 2026-01-17 to AVOID CONFLICT with eslint-plugin-simple-import-sort
+    // "module.sortImportDeclarations": "caseInsensitive",
+    // "module.sortExportDeclarations": "caseInsensitive",
+    "module.sortImportDeclarations": "maintain",
+    "module.sortExportDeclarations": "maintain",
 
     /* braces (default, conservative) */
     "bracePosition": "sameLineUnlessHanging",

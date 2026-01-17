@@ -5,10 +5,11 @@
  * All file paths, names, and URLs are derived from the plugin key.
  *
  * Naming convention:
- *   configs/{key}.jsonc
- *   docs/rules/{key}.rules.md
- *   schemas/{key}.schema.json
- *   types/{key}.d.ts
+ *   config/defaults/{key}.jsonc      # Generated reference (all options)
+ *   config/overrides/{key}.jsonc     # Customized config (consumed)
+ *   docs/rules/{key}.rules.md        # Generated documentation
+ *   internal/schemas/{key}.schema.json # Cached JSON schema
+ *   types/{key}.d.ts                 # Generated TypeScript types
  */
 
 export type PluginSource = 'dprint' | 'g-plane';
@@ -123,7 +124,6 @@ export function getSchemaUrl(key: string): string {
  */
 export function getPluginPaths(key: string) {
   return {
-    // TODO: NEW STRUCTURE -- remove unused
     defaults: `config/defaults/${key}.jsonc`,
     configs: `config/overrides/${key}.jsonc`,
     docs: `docs/rules/${key}.rules.md`,

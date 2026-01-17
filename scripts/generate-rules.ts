@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 /**
- * Generates documentation and TypeScript types from dprint plugin JSON schemas.
+ * Generates documentation, TypeScript types, and default configs from dprint plugin JSON schemas.
  *
  * Usage:
  *   pnpm rules.generate                    # Generate for all plugins
@@ -11,7 +11,10 @@
  * Outputs:
  *   docs/rules/{plugin}.rules.md
  *   types/{plugin}.d.ts
- *   schemas/{plugin}.schema.json (cached)
+ *   config/defaults/{plugin}.jsonc        # Reference config (all options)
+ *   internal/schemas/{plugin}.schema.json  # Cached JSON schema
+ *
+ * Note: config/overrides/{plugin}.jsonc is NOT overwritten (customized configs).
  */
 
 import fs from 'node:fs/promises';
@@ -351,6 +354,76 @@ function renderTypes(schema: JsonSchema, pluginKey: string): string {
   return lines.join('\n').trimEnd() + '\n';
 }
 
+// ─── Default Config Generation ───
+
+function renderDefaultConfig(schema: JsonSchema, pluginKey: string): string {
+  const plugin = PLUGINS[pluginKey];
+  const { deref, extractDefault, extractDescription, extractAllowed } = createSchemaHelpers(schema);
+
+  const lines: string[] = [];
+  lines.push('{');
+  lines.push(`  "$schema": "https://dprint.dev/schemas/v0.json",`);
+  lines.push(`  "${plugin.configKey}": {`);
+
+  const entries = Object.entries(schema.properties ?? {}).sort(([a], [b]) => a.localeCompare(b));
+
+  if (entries.length === 0) {
+    lines.push('    // No configuration options available');
+  } else {
+    const configEntries: Array<{ name: string; value: unknown; comment?: string }> = [];
+
+    for (const [name, prop] of entries) {
+      const resolved = deref(prop);
+      const description = extractDescription(resolved);
+      const def = extractDefault(resolved);
+      const allowed = extractAllowed(resolved);
+
+      // Build comment
+      const commentParts: string[] = [];
+      if (description) {
+        commentParts.push(description);
+      }
+      if (allowed.length > 0) {
+        const allowedStr = allowed.map((a) => JSON.stringify(a.value)).join(', ');
+        commentParts.push(`Allowed values: ${allowedStr}`);
+      }
+      if (def !== undefined) {
+        commentParts.push(`Default: ${JSON.stringify(def)}`);
+      }
+
+      // Only include properties that have defaults (reference config shows all possible options)
+      if (def !== undefined) {
+        configEntries.push({
+          name,
+          value: def,
+          comment: commentParts.length > 0 ? commentParts.join(' | ') : undefined,
+        });
+      }
+    }
+
+    // Write entries with comments
+    for (let i = 0; i < configEntries.length; i++) {
+      const entry = configEntries[i];
+      if (entry.comment) {
+        // Wrap long comments
+        const wrapped = entry.comment
+          .split('\n')
+          .map((line) => (line.trim() ? `    // ${line.trim()}` : '    //'))
+          .join('\n');
+        lines.push(wrapped);
+      }
+      const comma = i < configEntries.length - 1 ? ',' : '';
+      lines.push(`    "${entry.name}": ${JSON.stringify(entry.value)}${comma}`);
+    }
+  }
+
+  lines.push('  },');
+  lines.push('}');
+  lines.push('');
+
+  return lines.join('\n');
+}
+
 // ─── Main ───
 
 async function generateForPlugin(pluginKey: string): Promise<boolean> {
@@ -370,9 +443,12 @@ async function generateForPlugin(pluginKey: string): Promise<boolean> {
   const paths = getPluginPaths(pluginKey);
   const docsOut = path.join(PACKAGE_ROOT, paths.docs);
   const typesOut = path.join(PACKAGE_ROOT, paths.types);
+  const defaultsOut = path.join(PACKAGE_ROOT, paths.defaults);
+  const overridesPath = path.join(PACKAGE_ROOT, paths.configs);
 
   await fs.mkdir(path.dirname(docsOut), { recursive: true });
   await fs.mkdir(path.dirname(typesOut), { recursive: true });
+  await fs.mkdir(path.dirname(defaultsOut), { recursive: true });
 
   const propertyCount = Object.keys(schema.properties ?? {}).length;
 
@@ -382,11 +458,28 @@ async function generateForPlugin(pluginKey: string): Promise<boolean> {
     console.log(`   📝 ${propertyCount} configuration options`);
   }
 
+  // Generate docs and types
   await fs.writeFile(docsOut, renderMarkdown(schema, pluginKey), 'utf8');
   await fs.writeFile(typesOut, renderTypes(schema, pluginKey), 'utf8');
 
+  // Generate default config (reference only - never overwrites overrides)
+  const defaultConfig = renderDefaultConfig(schema, pluginKey);
+  await fs.writeFile(defaultsOut, defaultConfig, 'utf8');
+
+  // Verify overrides file exists (warn if missing, but don't create it)
+  const overridesExists = await fs
+    .access(overridesPath)
+    .then(() => true)
+    .catch(() => false);
+
+  if (!overridesExists) {
+    console.warn(`   ⚠️  Override file missing: ${paths.configs}`);
+    console.warn(`      Create it manually based on ${paths.defaults}`);
+  }
+
   console.log(`   ✅ ${paths.docs}`);
   console.log(`   ✅ ${paths.types}`);
+  console.log(`   ✅ ${paths.defaults}`);
 
   return true;
 }

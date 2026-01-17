@@ -40,13 +40,14 @@ pnpm home.config.generate
 
 ### Plugin registry
 
-All plugin metadata is centralized in `configs/plugins.registry.ts`. Generated outputs follow a consistent naming convention:
+All plugin metadata is centralized in `config/plugins.registry.ts`. Generated outputs follow a consistent naming convention:
 
 ```
-configs/{plugin}.jsonc       # dprint config
-docs/rules/{plugin}.rules.md # formatted docs
-schemas/{plugin}.schema.json # cached JSON schema
-types/{plugin}.d.ts          # TypeScript types
+config/defaults/{plugin}.jsonc        # Generated reference (all options)
+config/overrides/{plugin}.jsonc        # Customized config (consumed)
+docs/rules/{plugin}.rules.md           # Generated documentation
+internal/schemas/{plugin}.schema.json  # Cached JSON schema
+types/{plugin}.d.ts                    # TypeScript types
 ```
 
 ## What it formats

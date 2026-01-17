@@ -19,8 +19,8 @@
   ],
   "files": [
     "dprint.jsonc",
-    "configs/overrides/*.jsonc",
-    "configs/plugins.registry.ts",
+    "config/overrides/*.jsonc",
+    "config/plugins.registry.ts",
     "docs/**/*.md",
     "internal/schemas/*.json",
     "types/*.d.ts",

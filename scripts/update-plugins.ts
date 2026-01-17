@@ -24,7 +24,7 @@ function run(cmd: string) {
 const configFiles = getAllConfigFilenames();
 
 for (const configFile of configFiles) {
-  const fullPath = join(PACKAGE_ROOT, 'configs', configFile);
+  const fullPath = join(PACKAGE_ROOT, 'config', 'overrides', configFile);
   if (!existsSync(fullPath)) {
     console.warn(`⚠️  Skipping missing config: ${configFile}`);
     continue;

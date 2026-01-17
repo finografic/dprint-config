@@ -6,7 +6,7 @@ dist/
 build/
 
 # Generated (home config, etc.)
-**/generated/
+internal/generated/
 
 # Environment files
 .env

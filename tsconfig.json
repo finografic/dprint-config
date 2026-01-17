@@ -24,7 +24,7 @@
       "config/*": ["config/*"],
       "docs/*": ["./docs/*"],
       "scripts/*": ["./scripts/*"],
-      "internal/schemas/*": ["./internal/schemas/*"],
+      "internal/*": ["./internal/*"],
       "types/*": ["./types/*"]
     }
   },

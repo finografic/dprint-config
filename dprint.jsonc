@@ -20,6 +20,6 @@
     "**/*-lock.yaml",
     "**/*.d.ts",
     "docs/**/*.rules.md",
-    "schemas/**/*.json",
+    "internal/schemas/**/*.json",
   ],
 }

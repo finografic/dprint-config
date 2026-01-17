@@ -123,9 +123,11 @@ export function getSchemaUrl(key: string): string {
  */
 export function getPluginPaths(key: string) {
   return {
-    config: `configs/${key}.jsonc`,
+    // TODO: NEW STRUCTURE -- remove unused
+    defaults: `config/defaults/${key}.jsonc`,
+    configs: `config/overrides/${key}.jsonc`,
     docs: `docs/rules/${key}.rules.md`,
-    schema: `schemas/${key}.schema.json`,
+    schema: `internal/schemas/${key}.schema.json`,
     types: `types/${key}.d.ts`,
   };
 }
@@ -143,7 +145,7 @@ export function getOrderedPluginKeys(): string[] {
  * Get all config file paths (for scripts that iterate configs)
  */
 export function getAllConfigPaths(): string[] {
-  return getOrderedPluginKeys().map((key) => `configs/${key}.jsonc`);
+  return getOrderedPluginKeys().map((key) => `config/overrides/${key}.jsonc`);
 }
 
 /**

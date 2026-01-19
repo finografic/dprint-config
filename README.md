@@ -29,16 +29,15 @@ Maintainer scripts live in `scripts/*.ts` and run via `tsx`.
 
 ```bash
 # Update plugin versions AND regenerate schemas/docs/types (recommended)
-pnpm dprint.update
+pnpm update.plugins.full
 
 # Or run individually:
-pnpm dprint.plugins.update        # Update plugin versions in defaults/ and overrides/
-pnpm dprint.plugins.generate       # Generate docs/types/defaults from schemas
-pnpm dprint.plugins.generate --force  # Clear cached schemas and regenerate
+pnpm update.plugins                 # Update plugin versions in defaults/ and overrides/
+pnpm generate.plugin.artefacts     # Generate docs/types/defaults from schemas
+pnpm generate.plugin.artefacts --force  # Clear cached schemas and regenerate
 
-# Generate flattened ~/dprint.jsonc
-pnpm home.config.generate
-pnpm home.config.install           # Copy to ~/dprint.jsonc
+# Install flattened config to ~/dprint.jsonc
+pnpm install.dprint.home.config
 ```
 
 ### Plugin registry
@@ -55,8 +54,9 @@ types/{plugin}.d.ts                   # TypeScript types
 
 **Workflow:**
 
-- `dprint.plugins.update` updates WASM plugin URLs in both `defaults/` and `overrides/`
-- `dprint.plugins.generate` fetches fresh schemas and regenerates docs/types/defaults
+- `update.plugins` updates WASM plugin URLs in both `defaults/` and `overrides/`
+- `generate.plugin.artefacts` fetches fresh schemas and regenerates docs/types/defaults
+- `update.plugins.full` runs both update and generate with `--force` (recommended after plugin updates)
 - Use `--force` flag to clear cached schemas and ensure fresh data after plugin updates
 
 ## What it formats

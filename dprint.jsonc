@@ -19,6 +19,8 @@
     "**/*-lock.json",
     "**/*-lock.yaml",
     "**/*.d.ts",
+    "**/dist",
+    "**/build",
     "docs/**/*.rules.md",
     "internal/schemas/**/*.json",
   ],

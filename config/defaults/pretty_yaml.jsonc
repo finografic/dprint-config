@@ -1,0 +1,39 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "yaml": {
+    // Control whether whitespace should be inserted between braces or not. | Default: true
+    "braceSpacing": true,
+    // Control whether whitespace should be inserted between brackets or not. | Default: false
+    "bracketSpacing": false,
+    // Control the whitespace behavior of block compact map in block sequence value. This option is only effective when `indentWidth` is greater than 2. | Allowed values: "oneSpace", "indent" | Default: "oneSpace"
+    "dashSpacing": "oneSpace",
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "flowMap.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "flowSequence.preferSingleLine": false,
+    // Control whether whitespace should be inserted at the beginning of comments or not. | Default: false
+    "formatComments": false,
+    // Text directive for ignoring formatting specific content. | Default: "pretty-yaml-ignore"
+    "ignoreCommentDirective": "pretty-yaml-ignore",
+    // Control whether block sequence should be indented or not in a block map. | Default: true
+    "indentBlockSequenceInMap": true,
+    // Size of indentation. | Default: 2
+    "indentWidth": 2,
+    // Specify whether use `\n` (LF) or `\r\n` (CRLF) for line break. | Allowed values: "lf", "crlf" | Default: "lf"
+    "lineBreak": "lf",
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "preferSingleLine": false,
+    // The line width limitation that Pretty YAML should *(but not must)* avoid exceeding. Pretty YAML will try its best to keep line width less than this value, but it may exceed for some cases, for example, a very very long single word. | Default: 80
+    "printWidth": 80,
+    // Control whether to wrap prose in plain scalars when they exceed the print width. | Allowed values: "preserve", "always" | Default: "preserve"
+    "proseWrap": "preserve",
+    // Control the quotes. | Allowed values: "preferDouble", "preferSingle", "forceDouble", "forceSingle" | Default: "preferDouble"
+    "quotes": "preferDouble",
+    // Control whether trailing comma should be inserted or not. | Default: true
+    "trailingComma": true,
+    // Control whether trailing whitespaces should be trimmed or not. | Default: true
+    "trimTrailingWhitespaces": true,
+    // Control whether trailing zeros should be removed or not. | Default: false
+    "trimTrailingZero": false
+  },
+}

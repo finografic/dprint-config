@@ -1,0 +1,75 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "malva": {
+    // Control whether to tweak multi-line comments indentation. | Default: true
+    "alignComments": true,
+    // Control the quotes of strings. | Allowed values: "alwaysDouble", "alwaysSingle", "preferDouble", "preferSingle" | Default: "alwaysDouble"
+    "attrSelector.quotes": "alwaysDouble",
+    // Control whether should add quotes to attribute value in selector or not if it's not quoted. | Allowed values: "always", "ignore" | Default: "always"
+    "attrValueQuotes": "always",
+    // Control line break behavior after selector commas. | Allowed values: "always", "consistent", "wrap" | Default: "consistent"
+    "blockSelectorLinebreak": "consistent",
+    // Control the strategy of sorting CSS declarations (a.k.a. properties). If it's `null`, it won't sort CSS declarations. | Allowed values: "alphabetical", "smacss", "concentric", null | Default: null
+    "declarationOrder": null,
+    // Control how declarations are considered as a group when sorting. | Allowed values: "nonDeclaration", "nonDeclarationAndEmptyLine" | Default: "nonDeclaration"
+    "declarationOrderGroupBy": "nonDeclaration",
+    // Control whether whitespace should be inserted at the beginning and end of comments. | Default: false
+    "formatComments": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "functionArgs.preferSingleLine": false,
+    // Control the case of hex color values. | Allowed values: "ignore", "lower", "upper" | Default: "lower"
+    "hexCase": "lower",
+    // Control the hex color values in short-hand form or long-hand form. | Allowed values: "short", "long", null | Default: null
+    "hexColorLength": null,
+    // Text directive for ignoring formatting specific statement. | Default: "malva-ignore"
+    "ignoreCommentDirective": "malva-ignore",
+    // Text directive for ignoring formatting a whole file. | Default: "dprint-ignore-file"
+    "ignoreFileCommentDirective": "dprint-ignore-file",
+    // Size of indentation. When enabled `useTabs`, this option may be disregarded, since only one tab will be inserted when indented once. | Default: 2
+    "indentWidth": 2,
+    // Control whether to use percentage or keyword (`from` and `to`) notation as keyframe selectors. | Allowed values: "keyword", "percentage", null | Default: null
+    "keyframeSelectorNotation": null,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "lessImportOptions.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "lessMixinArgs.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "lessMixinParams.preferSingleLine": false,
+    // Specify use `\n` (LF) or `\r\n` (CRLF) for line break. | Allowed values: "lf", "crlf" | Default: "lf"
+    "lineBreak": "lf",
+    // Control whether line break should be inserted in pseudo class/element parens or not if current line is too long. | Default: false
+    "linebreakInPseudoParens": false,
+    // Control whether omit leading zero before dot of numbers or not. | Default: false
+    "omitNumberLeadingZero": false,
+    // Control whether line break should come before or after operators. | Allowed values: "before", "after" | Default: "after"
+    "operatorLinebreak": "after",
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "preferSingleLine": false,
+    // The line width limitation that Malva should *(but not must)* avoid exceeding. Malva will try its best to keep line width less than this value, but it may exceed for some cases, for example, a very very long single word. | Default: 80
+    "printWidth": 80,
+    // Control the quotes of strings. | Allowed values: "alwaysDouble", "alwaysSingle", "preferDouble", "preferSingle" | Default: "alwaysDouble"
+    "quotes": "alwaysDouble",
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "sassContentAtRule.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "sassIncludeAtRule.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "sassMap.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "sassModuleConfig.preferSingleLine": false,
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "sassParams.preferSingleLine": false,
+    // Text directive for overriding selector formatting. | Default: "malva-selector-override"
+    "selectorOverrideCommentDirective": "malva-selector-override",
+    // Control whether items should be placed on single line as possible, even they're originally on multiple lines. | Default: false
+    "selectors.preferSingleLine": false,
+    // Control the threshold value for putting block on a single line. If the number of statements in a block is less than or equal to this value, the block will be put on a single line as possible, but when the code can't fit on single line, it will still break into multiple lines. | Default: null
+    "singleLineBlockThreshold": null,
+    // Control whether to force to format all top-level declarations on a single line. | Default: false
+    "singleLineTopLevelDeclarations": false,
+    // Control whether trailing comma should be inserted or not. | Default: false
+    "trailingComma": false,
+    // Specify use space or tab for indentation. | Default: false
+    "useTabs": false
+  },
+}

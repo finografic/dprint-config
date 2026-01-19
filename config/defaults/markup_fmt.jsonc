@@ -1,0 +1,97 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "markup": {
+    // Control whether the next Angular control flow code should be on the same line with previous `}` or not. | Default: true
+    "angularNextControlFlowSameLine": true,
+    // Control whether the code block in the `<script>` tag should be indented or not for Astro. | Default: null
+    "astro.scriptIndent": null,
+    // Control whether the code block in the `<style>` tag should be indented or not for Astro. | Default: null
+    "astro.styleIndent": null,
+    // Control whether Astro attribute should be written in short-hand form or not when possible. | Default: null
+    "astroAttrShorthand": null,
+    // Control the closing bracket (`>`) of a multi-line element should come at the end of the last line or on the next line (with a line break). | Default: false
+    "closingBracketSameLine": false,
+    // When there're no children in an element, this option controls whether to insert a line break before the closing tag or not. | Allowed values: "always", "fit", "never" | Default: "fit"
+    "closingTagLineBreakForEmpty": "fit",
+    // Control whether Vue/Svelte/Astro/Angular component should be self-closed or not if it doesn't have children. | Default: null
+    "component.selfClosing": null,
+    // Control Vue `v-slot` directive style for Vue components. | Allowed values: "short", "long", "vSlot", null | Default: null
+    "component.vSlotStyle": null,
+    // Control the whitespace sensitivity before and after the children of an element for components. | Allowed values: "css", "strict", "ignore", null | Default: null
+    "component.whitespaceSensitivity": null,
+    // Control Vue `v-slot` directive style for default slot. | Allowed values: "short", "long", "vSlot", null | Default: null
+    "default.vSlotStyle": null,
+    // Control the case of "doctype" keyword in `<!DOCTYPE>`. | Allowed values: "ignore", "upper", "lower" | Default: "upper"
+    "doctypeKeywordCase": "upper",
+    // Control whether whitespace should be inserted at the beginning and end of comments and comments should be indented properly or not. | Default: false
+    "formatComments": false,
+    // Control whether HTML normal element should be self-closed or not if it doesn't have children. | Default: null
+    "html.normal.selfClosing": null,
+    // Control whether the code block in the `<script>` tag should be indented or not for HTML. | Default: null
+    "html.scriptIndent": null,
+    // Control whether the code block in the `<style>` tag should be indented or not for HTML. | Default: null
+    "html.styleIndent": null,
+    // Control whether HTML void element should be self-closed or not if it doesn't have children. | Default: null
+    "html.void.selfClosing": null,
+    // Text directive for ignoring formatting specific element or node. | Default: "markup-fmt-ignore"
+    "ignoreCommentDirective": "markup-fmt-ignore",
+    // Text directive for ignoring formatting a whole file. | Default: "dprint-ignore-file"
+    "ignoreFileCommentDirective": "dprint-ignore-file",
+    // Size of indentation. When enabled `useTabs`, this option may be disregarded, since only one tab will be inserted when indented once. | Default: 2
+    "indentWidth": 2,
+    // Specify whether use `\n` (LF) or `\r\n` (CRLF) for line break. | Allowed values: "lf", "crlf" | Default: "lf"
+    "lineBreak": "lf",
+    // Control whether MathML element should be self-closed or not if it doesn't have children. | Default: null
+    "mathml.selfClosing": null,
+    // Control the maximum number of attributes in one line. If this option is unset, there won't be any limitations. This option conflicts with `preferAttrsSingleLine` option. | Default: null
+    "maxAttrsPerLine": null,
+    // Control Vue `v-slot` directive style for named slot. | Allowed values: "short", "long", "vSlot", null | Default: null
+    "named.vSlotStyle": null,
+    // Control whether attributes should be put on single line when possible. This option conflicts with `maxAttrsPerLine` option. | Default: false
+    "preferAttrsSingleLine": false,
+    // The line width limitation that markup_fmt should *(but not must)* avoid exceeding. markup_fmt will try its best to keep line width less than this value, but it may exceed for some cases, for example, a very very long single word. | Default: 80
+    "printWidth": 80,
+    // Control the quotes of attribute value. | Allowed values: "double", "single" | Default: "double"
+    "quotes": "double",
+    // Tell markup_fmt what script formatter you are using. | Default: "dprint"
+    "scriptFormatter": "dprint",
+    // Control whether the code block in the `<script>` tag should be indented or not. | Default: false
+    "scriptIndent": false,
+    // Control whether single attribute should be put on the same line with tag name. | Default: true
+    "singleAttrSameLine": true,
+    // Control whether Svelte attribute value should be in strict mode or not. | Default: false
+    "strictSvelteAttr": false,
+    // Control whether the code block in the `<style>` tag should be indented or not. | Default: false
+    "styleIndent": false,
+    // Control whether the code block in the `<script>` tag should be indented or not for Svelte. | Default: null
+    "svelte.scriptIndent": null,
+    // Control whether the code block in the `<style>` tag should be indented or not for Svelte. | Default: null
+    "svelte.styleIndent": null,
+    // Control whether Svelte attribute should be written in short-hand form or not when possible. | Default: null
+    "svelteAttrShorthand": null,
+    // Control whether Svelte directive should be written in short-hand form or not when possible. | Default: null
+    "svelteDirectiveShorthand": null,
+    // Control whether SVG element should be self-closed or not if it doesn't have children. | Default: null
+    "svg.selfClosing": null,
+    // Specify use space or tab for indentation. | Default: false
+    "useTabs": false,
+    // Control whether Vue attribute should be written in short-hand form or not if attribute name and value are same. | Default: null
+    "vBindSameNameShortHand": null,
+    // Control Vue `v-bind` directive style. | Allowed values: "short", "long", null | Default: null
+    "vBindStyle": null,
+    // Control Vue `v-for` directive delimiter style. | Allowed values: "in", "of", null | Default: null
+    "vForDelimiterStyle": null,
+    // Control Vue `v-on` directive style. | Allowed values: "short", "long", null | Default: null
+    "vOnStyle": null,
+    // Control Vue `v-slot` directive style. | Allowed values: "short", "long", "vSlot", null | Default: null
+    "vSlotStyle": null,
+    // Control whether the code block in the `<script>` tag should be indented or not for Vue. | Default: null
+    "vue.scriptIndent": null,
+    // Control whether the code block in the `<style>` tag should be indented or not for Vue. | Default: null
+    "vue.styleIndent": null,
+    // Control the component naming style in template. | Allowed values: "ignore", "pascalCase", "kebabCase" | Default: "ignore"
+    "vueComponentCase": "ignore",
+    // Control the whitespace sensitivity before and after the children of an element. | Allowed values: "css", "strict", "ignore" | Default: "css"
+    "whitespaceSensitivity": "css"
+  },
+}

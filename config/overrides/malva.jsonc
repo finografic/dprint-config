@@ -2,6 +2,6 @@
   "$schema": "https://dprint.dev/schemas/v0.json",
   "malva": {},
   "plugins": [
-    "https://plugins.dprint.dev/g-plane/malva-v0.15.1.wasm",
+    "https://plugins.dprint.dev/g-plane/malva-v0.15.2.wasm",
   ],
 }

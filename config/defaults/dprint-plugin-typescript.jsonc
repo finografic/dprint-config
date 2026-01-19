@@ -1,0 +1,371 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "typescript": {
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: "always", "onlySingleItem", "never" | Default: "never"
+    "arguments.preferHanging": "never",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "arguments.preferSingleLine": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "arguments.spaceAround": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "arguments.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: "always", "onlySingleItem", "never" | Default: "never"
+    "arrayExpression.preferHanging": "never",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "arrayExpression.preferSingleLine": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "arrayExpression.spaceAround": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "arrayExpression.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "arrayPattern.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "arrayPattern.preferSingleLine": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "arrayPattern.spaceAround": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "arrayPattern.trailingCommas": "onlyMultiLine",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "arrowFunction.bracePosition": "sameLineUnlessHanging",
+    // Whether to use parentheses around a single parameter in an arrow function. | Allowed values: "force", "maintain", "preferNone" | Default: "maintain"
+    "arrowFunction.useParentheses": "maintain",
+    // Whether to force a line per expression when spanning multiple lines. | Allowed values: true, false | Default: false
+    "binaryExpression.linePerExpression": false,
+    // Where to place the operator for expressions that span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "binaryExpression.operatorPosition": "nextLine",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "binaryExpression.preferSingleLine": false,
+    // Whether to surround the operator in a binary expression with spaces. | Allowed values: true, false | Default: true
+    "binaryExpression.spaceSurroundingBitwiseAndArithmeticOperator": true,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "bracePosition": "sameLineUnlessHanging",
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "catchClause.spaceAround": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "classDeclaration.bracePosition": "sameLineUnlessHanging",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "classExpression.bracePosition": "sameLineUnlessHanging",
+    // Forces a space after the double slash in a comment line. | Allowed values: true, false | Default: true
+    "commentLine.forceSpaceAfterSlashes": true,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "computed.preferSingleLine": false,
+    // Where to place the operator for expressions that span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "conditionalExpression.operatorPosition": "nextLine",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "conditionalExpression.preferSingleLine": false,
+    // Where to place the operator for expressions that span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "conditionalType.operatorPosition": "nextLine",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "conditionalType.preferSingleLine": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "constructor.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space before the parentheses of a constructor. | Allowed values: true, false | Default: false
+    "constructor.spaceBeforeParentheses": false,
+    // Whether to add a space after the `new` keyword in a constructor type. | Allowed values: true, false | Default: false
+    "constructorType.spaceAfterNewKeyword": false,
+    // Whether to add a space after the `new` keyword in a construct signature. | Allowed values: true, false | Default: false
+    "constructSignature.spaceAfterNewKeyword": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "decorators.preferSingleLine": false,
+    // Top level configuration that sets the configuration to what is used in Deno. | Allowed values: true, false | Default: false
+    "deno": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "doWhileStatement.bracePosition": "sameLineUnlessHanging",
+    // Where to place the next control flow within a control flow statement. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "sameLine"
+    "doWhileStatement.nextControlFlowPosition": "sameLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "doWhileStatement.preferHanging": false,
+    // Whether to add a space after the `while` keyword in a do while statement. | Allowed values: true, false | Default: true
+    "doWhileStatement.spaceAfterWhileKeyword": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "doWhileStatement.spaceAround": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "enumDeclaration.bracePosition": "sameLineUnlessHanging",
+    // How to space the members of an enum. | Allowed values: "newLine", "blankLine", "maintain" | Default: "maintain"
+    "enumDeclaration.memberSpacing": "maintain",
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "enumDeclaration.trailingCommas": "onlyMultiLine",
+    // If code import/export specifiers should be forced to be on multiple lines. | Allowed values: "always", "never", "whenMultiple" | Default: "never"
+    "exportDeclaration.forceMultiLine": "never",
+    // If code should be forced to be on a single line if able. | Allowed values: true, false | Default: false
+    "exportDeclaration.forceSingleLine": false,
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "exportDeclaration.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "exportDeclaration.preferSingleLine": false,
+    // The kind of sort ordering to use. | Allowed values: "maintain", "caseSensitive", "caseInsensitive" | Default: "caseInsensitive"
+    "exportDeclaration.sortNamedExports": "caseInsensitive",
+    // The kind of sort ordering to use for typed imports and exports. | Allowed values: "first", "last", "none" | Default: "none"
+    "exportDeclaration.sortTypeOnlyExports": "none",
+    // Whether to add spaces around named exports in an export declaration. | Allowed values: true, false | Default: true
+    "exportDeclaration.spaceSurroundingNamedExports": true,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "exportDeclaration.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "extendsClause.preferHanging": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "forInStatement.bracePosition": "sameLineUnlessHanging",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "forInStatement.preferHanging": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "forInStatement.singleBodyPosition": "maintain",
+    // Whether to add a space after the `for` keyword in a "for in" statement. | Allowed values: true, false | Default: true
+    "forInStatement.spaceAfterForKeyword": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "forInStatement.spaceAround": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "forInStatement.useBraces": "whenNotSingleLine",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "forOfStatement.bracePosition": "sameLineUnlessHanging",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "forOfStatement.preferHanging": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "forOfStatement.singleBodyPosition": "maintain",
+    // Whether to add a space after the `for` keyword in a "for of" statement. | Allowed values: true, false | Default: true
+    "forOfStatement.spaceAfterForKeyword": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "forOfStatement.spaceAround": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "forOfStatement.useBraces": "whenNotSingleLine",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "forStatement.bracePosition": "sameLineUnlessHanging",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "forStatement.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "forStatement.preferSingleLine": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "forStatement.singleBodyPosition": "maintain",
+    // Whether to add a space after the `for` keyword in a "for" statement. | Allowed values: true, false | Default: true
+    "forStatement.spaceAfterForKeyword": true,
+    // Whether to add a space after the semi-colons in a "for" statement. | Allowed values: true, false | Default: true
+    "forStatement.spaceAfterSemiColons": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "forStatement.spaceAround": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "forStatement.useBraces": "whenNotSingleLine",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "functionDeclaration.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space before the parentheses of a function declaration. | Allowed values: true, false | Default: false
+    "functionDeclaration.spaceBeforeParentheses": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "functionExpression.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space after the function keyword of a function expression. | Allowed values: true, false | Default: false
+    "functionExpression.spaceAfterFunctionKeyword": false,
+    // Whether to add a space before the parentheses of a function expression. | Allowed values: true, false | Default: false
+    "functionExpression.spaceBeforeParentheses": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "getAccessor.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space before the parentheses of a get accessor. | Allowed values: true, false | Default: false
+    "getAccessor.spaceBeforeParentheses": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "ifStatement.bracePosition": "sameLineUnlessHanging",
+    // Where to place the next control flow within a control flow statement. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "sameLine"
+    "ifStatement.nextControlFlowPosition": "sameLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "ifStatement.preferHanging": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "ifStatement.singleBodyPosition": "maintain",
+    // Whether to add a space after the `if` keyword in an "if" statement. | Allowed values: true, false | Default: true
+    "ifStatement.spaceAfterIfKeyword": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "ifStatement.spaceAround": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "ifStatement.useBraces": "whenNotSingleLine",
+    // The text to use for a file ignore comment (ex. `// dprint-ignore-file`). | Default: "dprint-ignore-file"
+    "ignoreFileCommentText": "dprint-ignore-file",
+    // The text to use for an ignore comment (ex. `// dprint-ignore`). | Default: "dprint-ignore"
+    "ignoreNodeCommentText": "dprint-ignore",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "implementsClause.preferHanging": false,
+    // If code import/export specifiers should be forced to be on multiple lines. | Allowed values: "always", "never", "whenMultiple" | Default: "never"
+    "importDeclaration.forceMultiLine": "never",
+    // If code should be forced to be on a single line if able. | Allowed values: true, false | Default: false
+    "importDeclaration.forceSingleLine": false,
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "importDeclaration.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "importDeclaration.preferSingleLine": false,
+    // The kind of sort ordering to use. | Allowed values: "maintain", "caseSensitive", "caseInsensitive" | Default: "caseInsensitive"
+    "importDeclaration.sortNamedImports": "caseInsensitive",
+    // The kind of sort ordering to use for typed imports and exports. | Allowed values: "first", "last", "none" | Default: "none"
+    "importDeclaration.sortTypeOnlyImports": "none",
+    // Whether to add spaces around named imports in an import declaration. | Allowed values: true, false | Default: true
+    "importDeclaration.spaceSurroundingNamedImports": true,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "importDeclaration.trailingCommas": "onlyMultiLine",
+    // The number of columns for an indent. | Default: 2
+    "indentWidth": 2,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "interfaceDeclaration.bracePosition": "sameLineUnlessHanging",
+    // If the end angle bracket of a jsx open element or self closing element should be on the same or next line when the attributes span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "jsx.bracketPosition": "nextLine",
+    // Forces newlines surrounding the content of JSX elements. | Allowed values: true, false | Default: false
+    "jsx.forceNewLinesSurroundingContent": false,
+    // Surrounds the top-most JSX element or fragment in parentheses when it spans multiple lines. | Allowed values: "never", "prefer", "always" | Default: "prefer"
+    "jsx.multiLineParens": "prefer",
+    // How to use single or double quotes in JSX attributes. | Allowed values: "preferDouble", "preferSingle" | Default: "preferDouble"
+    "jsx.quoteStyle": "preferDouble",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "jsxAttributes.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "jsxAttributes.preferSingleLine": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "jsxElement.preferSingleLine": false,
+    // Whether to add a space surrounding the expression of a JSX container. | Allowed values: true, false | Default: false
+    "jsxExpressionContainer.spaceSurroundingExpression": false,
+    // If the end angle bracket of a jsx open element or self closing element should be on the same or next line when the attributes span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "jsxOpeningElement.bracketPosition": "nextLine",
+    // If the end angle bracket of a jsx open element or self closing element should be on the same or next line when the attributes span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "jsxSelfClosingElement.bracketPosition": "nextLine",
+    // Whether to add a space before a JSX element's slash when self closing. | Allowed values: true, false | Default: true
+    "jsxSelfClosingElement.spaceBeforeSlash": true,
+    // The width of a line the printer will try to stay under. Note that the printer may exceed this width in certain cases. | Default: 120
+    "lineWidth": 120,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "mappedType.preferSingleLine": false,
+    // Whether to force a line per expression when spanning multiple lines. | Allowed values: true, false | Default: false
+    "memberExpression.linePerExpression": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "memberExpression.preferSingleLine": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "method.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space before the parentheses of a method. | Allowed values: true, false | Default: false
+    "method.spaceBeforeParentheses": false,
+    // The kind of sort ordering to use. | Allowed values: "maintain", "caseSensitive", "caseInsensitive" | Default: "caseInsensitive"
+    "module.sortExportDeclarations": "caseInsensitive",
+    // The kind of sort ordering to use. | Allowed values: "maintain", "caseSensitive", "caseInsensitive" | Default: "caseInsensitive"
+    "module.sortImportDeclarations": "caseInsensitive",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "moduleDeclaration.bracePosition": "sameLineUnlessHanging",
+    // The kind of newline to use. | Allowed values: "auto", "crlf", "lf", "system" | Default: "lf"
+    "newLineKind": "lf",
+    // Where to place the next control flow within a control flow statement. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "sameLine"
+    "nextControlFlowPosition": "sameLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "objectExpression.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "objectExpression.preferSingleLine": false,
+    // Whether to add a space surrounding the properties of a single line object expression. | Allowed values: true, false | Default: true
+    "objectExpression.spaceSurroundingProperties": true,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "objectExpression.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "objectPattern.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "objectPattern.preferSingleLine": false,
+    // Whether to add a space surrounding the properties of a single line object pattern. | Allowed values: true, false | Default: true
+    "objectPattern.spaceSurroundingProperties": true,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "objectPattern.trailingCommas": "onlyMultiLine",
+    // Where to place the operator for expressions that span multiple lines. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "nextLine"
+    "operatorPosition": "nextLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: "always", "onlySingleItem", "never" | Default: "never"
+    "parameters.preferHanging": "never",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "parameters.preferSingleLine": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "parameters.spaceAround": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "parameters.trailingCommas": "onlyMultiLine",
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "parenExpression.spaceAround": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "parentheses.preferSingleLine": false,
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "preferSingleLine": false,
+    // Change when properties in objects are quoted. | Allowed values: "asNeeded", "consistent", "preserve" | Default: "preserve"
+    "quoteProps": "preserve",
+    // How to use single or double quotes. | Allowed values: "alwaysDouble", "alwaysSingle", "preferDouble", "preferSingle" | Default: "alwaysDouble"
+    "quoteStyle": "alwaysDouble",
+    // How semi-colons should be used. | Allowed values: "always", "prefer", "asi" | Default: "prefer"
+    "semiColons": "prefer",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "sequenceExpression.preferHanging": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "setAccessor.bracePosition": "sameLineUnlessHanging",
+    // Whether to add a space before the parentheses of a set accessor. | Allowed values: true, false | Default: false
+    "setAccessor.spaceBeforeParentheses": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "singleBodyPosition": "maintain",
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "spaceAround": false,
+    // Whether to add a space surrounding the properties of single line object-like nodes. | Allowed values: true, false | Default: true
+    "spaceSurroundingProperties": true,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "staticBlock.bracePosition": "sameLineUnlessHanging",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "switchCase.bracePosition": "sameLineUnlessHanging",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "switchStatement.bracePosition": "sameLineUnlessHanging",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "switchStatement.preferHanging": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "switchStatement.spaceAround": false,
+    // Whether to add a space before the literal in a tagged template. | Allowed values: true, false | Default: false
+    "taggedTemplate.spaceBeforeLiteral": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "trailingCommas": "onlyMultiLine",
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "tryStatement.bracePosition": "sameLineUnlessHanging",
+    // Where to place the next control flow within a control flow statement. | Allowed values: "maintain", "sameLine", "nextLine" | Default: "sameLine"
+    "tryStatement.nextControlFlowPosition": "sameLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: "always", "onlySingleItem", "never" | Default: "never"
+    "tupleType.preferHanging": "never",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "tupleType.preferSingleLine": false,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "tupleType.spaceAround": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "tupleType.trailingCommas": "onlyMultiLine",
+    // Whether to add a space before the colon of a type annotation. | Allowed values: true, false | Default: false
+    "typeAnnotation.spaceBeforeColon": false,
+    // Whether to add a space before the expression in a type assertion. | Allowed values: true, false | Default: true
+    "typeAssertion.spaceBeforeExpression": true,
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "typeLiteral.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "typeLiteral.preferSingleLine": false,
+    // The kind of separator to use in type literals. | Allowed values: "semiColon", "comma" | Default: "semiColon"
+    "typeLiteral.separatorKind": "semiColon",
+    // The kind of separator to use in type literals. | Allowed values: "semiColon", "comma" | Default: "semiColon"
+    "typeLiteral.separatorKind.multiLine": "semiColon",
+    // The kind of separator to use in type literals. | Allowed values: "semiColon", "comma" | Default: "semiColon"
+    "typeLiteral.separatorKind.singleLine": "semiColon",
+    // Whether to add a space surrounding the properties of a single line type literal. | Allowed values: true, false | Default: true
+    "typeLiteral.spaceSurroundingProperties": true,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "typeLiteral.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: "always", "onlySingleItem", "never" | Default: "never"
+    "typeParameters.preferHanging": "never",
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "typeParameters.preferSingleLine": false,
+    // If trailing commas should be used. | Allowed values: "never", "always", "onlyMultiLine" | Default: "onlyMultiLine"
+    "typeParameters.trailingCommas": "onlyMultiLine",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "unionAndIntersectionType.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "unionAndIntersectionType.preferSingleLine": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "useBraces": "whenNotSingleLine",
+    // Whether to use tabs (true) or spaces (false). | Allowed values: true, false | Default: false
+    "useTabs": false,
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "variableStatement.preferHanging": false,
+    // If code should revert back from being on multiple lines to being on a single line when able. | Allowed values: true, false | Default: false
+    "variableStatement.preferSingleLine": false,
+    // Where to place the opening brace. | Allowed values: "maintain", "sameLine", "nextLine", "sameLineUnlessHanging" | Default: "sameLineUnlessHanging"
+    "whileStatement.bracePosition": "sameLineUnlessHanging",
+    // Set to prefer hanging indentation when exceeding the line width instead of making code split up on multiple lines. | Allowed values: true, false | Default: false
+    "whileStatement.preferHanging": false,
+    // Where to place the expression of a statement that could possibly be on one line (ex. `if (true) console.log(5);`). | Allowed values: "maintain", "sameLine", "nextLine" | Default: "maintain"
+    "whileStatement.singleBodyPosition": "maintain",
+    // Whether to add a space after the `while` keyword in a while statement. | Allowed values: true, false | Default: true
+    "whileStatement.spaceAfterWhileKeyword": true,
+    // Whether to place spaces around enclosed expressions. | Allowed values: true, false | Default: false
+    "whileStatement.spaceAround": false,
+    // If braces should be used or not. | Allowed values: "maintain", "whenNotSingleLine", "always", "preferNone" | Default: "whenNotSingleLine"
+    "whileStatement.useBraces": "whenNotSingleLine"
+  },
+}

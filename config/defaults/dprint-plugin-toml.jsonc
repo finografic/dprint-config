@@ -1,0 +1,17 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "toml": {
+    // Whether to apply sorting to a Cargo.toml file. | Allowed values: true, false | Default: true
+    "cargo.applyConventions": true,
+    // Whether to force a leading space in a comment. | Allowed values: true, false | Default: true
+    "comment.forceLeadingSpace": true,
+    // The number of characters for an indent. | Default: 2
+    "indentWidth": 2,
+    // The width of a line the printer will try to stay under. Note that the printer may exceed this width in certain cases. | Default: 120
+    "lineWidth": 120,
+    // The kind of newline to use. | Allowed values: "auto", "crlf", "lf", "system" | Default: "lf"
+    "newLineKind": "lf",
+    // Whether to use tabs (true) or spaces (false). | Allowed values: true, false | Default: false
+    "useTabs": false
+  },
+}

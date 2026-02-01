@@ -1,13 +1,16 @@
 {
   "editor.formatOnSave": true,
+
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+
   "eslint.format.enable": true,
   "prettier.enable": false,
-  "editor.defaultFormatter": "dprint.dprint",
+
   "dprint.experimentalLsp": true,
   "dprint.verbose": true,
+
   "[javascript]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
@@ -27,7 +30,7 @@
     "editor.defaultFormatter": "dprint.dprint"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "dprint.dprint"
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[toml]": {
     "editor.defaultFormatter": "dprint.dprint"
@@ -41,13 +44,7 @@
   "[scss]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
-  "[sass]": {
-    "editor.defaultFormatter": "dprint.dprint"
-  },
   "[html]": {
-    "editor.defaultFormatter": "dprint.dprint"
-  },
-  "[astro]": {
     "editor.defaultFormatter": "dprint.dprint"
   }
 }

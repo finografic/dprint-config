@@ -46,7 +46,8 @@
     "·········· REGISTRIES": "················································",
     "view.registry.github": "pnpm view @finografic/dprint-config --registry=https://npm.pkg.github.com",
     "·········· PACKAGES": "··················································",
-    "upgrade.deps.all": "pnpm update --latest",
+    "update.eslint-config": "pnpm update @finografic/eslint-config --latest",
+    "update.deps.all": "pnpm update --latest",
     "·········· HOOKS": "·····················································",
     "prepare": "simple-git-hooks"
   },
@@ -66,13 +67,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@types/node": "^24.0.0",
+    "@finografic/eslint-config": "0.9.4",
+    "@types/node": "24.0.0",
     "eslint": "^9.39.2",
     "jiti": "^2.6.1",
     "lint-staged": "^16.2.7",
     "simple-git-hooks": "^2.13.1",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.52.0"
+    "typescript-eslint": "^8.53.1"
   }
 }

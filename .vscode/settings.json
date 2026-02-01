@@ -1,11 +1,15 @@
 {
-  "editor.formatOnSave": true,
+  "npm.packageManager": "pnpm",
 
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
 
+  "eslint.enable": true,
+  "eslint.useFlatConfig": true,
   "eslint.format.enable": true,
+
   "prettier.enable": false,
 
   "dprint.experimentalLsp": true,
@@ -29,9 +33,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
   "[toml]": {
     "editor.defaultFormatter": "dprint.dprint"
   },
@@ -46,5 +47,10 @@
   },
   "[html]": {
     "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dprint.dprint",
+    "files.trimTrailingWhitespace": false,
+    "files.insertFinalNewline": true
   }
 }

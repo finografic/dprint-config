@@ -58,6 +58,8 @@
     "dprint": "^0.51.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
     "@eslint/js": "^9.39.2",
     "@finografic/eslint-config": "0.9.4",
     "@types/node": "24.0.0",

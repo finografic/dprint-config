@@ -1,8 +1,8 @@
 {
   "recommendations": [
+    "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
-    "dprint.dprint",
-    "davidanson.vscode-markdownlint"
+    "dprint.dprint"
   ],
   "unwantedRecommendations": []
 }

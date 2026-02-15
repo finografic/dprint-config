@@ -23,6 +23,6 @@
     "**/build",
     "docs/**/*.rules.md",
     "internal/schemas/**/*.json",
-    ".vscode/**/*.css",
+    "**/.vscode/**/*.css",
   ],
 }

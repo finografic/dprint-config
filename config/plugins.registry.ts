@@ -67,23 +67,25 @@ export const PLUGINS: Record<string, PluginConfig> = {
     order: 4,
   },
   // ─── g-plane plugins ───
-  malva: {
+  'malva': {
     displayName: 'Malva (CSS/SCSS/Sass)',
     source: 'g-plane',
     configKey: 'malva',
     order: 5,
   },
+  /*
   markup_fmt: {
     displayName: 'Markup (HTML/Vue/Svelte/Astro)',
     source: 'g-plane',
     configKey: 'markup',
     order: 6,
   },
-  pretty_yaml: {
+  */
+  'pretty_yaml': {
     displayName: 'Pretty YAML',
     source: 'g-plane',
     configKey: 'yaml',
-    order: 7,
+    order: 6,
   },
 };
 

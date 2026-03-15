@@ -7,7 +7,7 @@
     "./config/overrides/dprint-plugin-markdown.jsonc",
     "./config/overrides/dprint-plugin-toml.jsonc",
     "./config/overrides/malva.jsonc",
-    "./config/overrides/markup_fmt.jsonc",
+    // "./config/overrides/markup_fmt.jsonc",
     "./config/overrides/pretty_yaml.jsonc",
   ],
   "lineWidth": 100,

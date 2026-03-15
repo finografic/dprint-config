@@ -73,14 +73,12 @@ export const PLUGINS: Record<string, PluginConfig> = {
     configKey: 'malva',
     order: 5,
   },
-  /*
-  markup_fmt: {
+  'markup_fmt': {
     displayName: 'Markup (HTML/Vue/Svelte/Astro)',
     source: 'g-plane',
     configKey: 'markup',
     order: 6,
   },
-  */
   'pretty_yaml': {
     displayName: 'Pretty YAML',
     source: 'g-plane',

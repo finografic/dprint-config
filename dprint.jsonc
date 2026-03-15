@@ -1,19 +1,19 @@
 {
   // REF: https://dprint.dev/config
   "$schema": "https://dprint.dev/schemas/v0.json",
+  "lineWidth": 100,
+  "indentWidth": 2,
+  "useTabs": false,
+  "newLineKind": "lf",
   "extends": [
     "./config/overrides/dprint-plugin-typescript.jsonc",
     "./config/overrides/dprint-plugin-json.jsonc",
     "./config/overrides/dprint-plugin-markdown.jsonc",
     "./config/overrides/dprint-plugin-toml.jsonc",
     "./config/overrides/malva.jsonc",
-    // "./config/overrides/markup_fmt.jsonc",
+    "./config/overrides/markup_fmt.jsonc",
     "./config/overrides/pretty_yaml.jsonc",
   ],
-  "lineWidth": 100,
-  "indentWidth": 2,
-  "useTabs": false,
-  "newLineKind": "lf",
   "excludes": [
     "**/node_modules",
     "**/*-lock.json",

@@ -10,7 +10,7 @@
     /* semicolons and quotes */
     "semiColons": "prefer", // default: "prefer", setting: "always" ??
     "quoteStyle": "preferSingle",
-    "quoteProps": "asNeeded",
+    "quoteProps": "consistent",
 
     /* trailing commas */
     "trailingCommas": "onlyMultiLine",

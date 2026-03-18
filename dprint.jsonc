@@ -8,7 +8,7 @@
   "extends": [
     "./config/overrides/dprint-plugin-typescript.jsonc",
     "./config/overrides/dprint-plugin-json.jsonc",
-    "./config/overrides/dprint-plugin-markdown.jsonc",
+    // "./config/overrides/dprint-plugin-markdown.jsonc",
     "./config/overrides/dprint-plugin-toml.jsonc",
     "./config/overrides/malva.jsonc",
     "./config/overrides/markup_fmt.jsonc",
